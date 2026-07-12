@@ -4,11 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#080b0d" />
+
   <title>Útmutató | Bulldozer Discord Bot</title>
   <meta
     name="description"
     content="Részletes útmutató a Bulldozer Discord Bot használatához: világ beállítása, statisztikák, térképek, foglalásfigyelés és szövetségek."
   />
+
   <style>
     :root {
       --bg: #060809;
@@ -28,14 +30,17 @@
       --max-width: 1180px;
       --radius: 14px;
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     html {
       scroll-behavior: smooth;
     }
+
     body {
       min-height: 100vh;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -47,6 +52,7 @@
         linear-gradient(180deg, #050708 0%, #0a0d0f 100%);
       overflow-x: hidden;
     }
+
     body::before {
       content: "";
       position: fixed;
@@ -60,10 +66,12 @@
       mask-image: linear-gradient(to bottom, rgba(0,0,0,0.78), transparent 86%);
       z-index: -1;
     }
+
     a {
       color: inherit;
       text-decoration: none;
     }
+
     code {
       color: var(--gold-2);
       font-weight: 850;
@@ -72,10 +80,12 @@
       border-radius: 5px;
       padding: 1px 5px;
     }
+
     .container {
       width: min(var(--max-width), calc(100% - 36px));
       margin-inline: auto;
     }
+
     .site-header {
       position: sticky;
       top: 0;
@@ -85,6 +95,7 @@
       backdrop-filter: blur(16px);
       box-shadow: 0 14px 34px rgba(0,0,0,0.28);
     }
+
     .nav-wrap {
       min-height: 78px;
       display: flex;
@@ -92,11 +103,13 @@
       justify-content: space-between;
       gap: 24px;
     }
+
     .brand {
       display: inline-flex;
       align-items: center;
       gap: 13px;
     }
+
     .brand-mark {
       width: 52px;
       height: 58px;
@@ -105,10 +118,12 @@
       color: var(--gold);
       filter: drop-shadow(0 0 20px rgba(255, 184, 31, 0.22));
     }
+
     .brand-mark svg {
       width: 100%;
       height: 100%;
     }
+
     .brand-text strong {
       display: block;
       color: var(--gold);
@@ -116,6 +131,7 @@
       line-height: 1;
       letter-spacing: 0.07em;
     }
+
     .brand-text span {
       display: block;
       margin-top: 7px;
@@ -124,12 +140,14 @@
       font-weight: 800;
       letter-spacing: 0.31em;
     }
+
     .header-actions {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
       justify-content: flex-end;
     }
+
     .top-link,
     .btn {
       display: inline-flex;
@@ -147,10 +165,797 @@
       text-transform: uppercase;
       transition: 0.2s ease;
     }
+
     .top-link:hover,
     .btn:hover {
       transform: translateY(-2px);
       background: rgba(255, 184, 31, 0.08);
       box-shadow: 0 12px 26px rgba(255, 184, 31, 0.12);
     }
+
     .hero {
+      position: relative;
+      padding: 86px 0 46px;
+      text-align: center;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 184, 31, 0.16);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 18%, rgba(255, 184, 31, 0.10), transparent 36%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 880px;
+      margin-inline: auto;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold);
+      font-size: 0.76rem;
+      font-weight: 850;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .kicker::before,
+    .kicker::after {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+
+    .kicker::after {
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    h1 {
+      margin-top: 18px;
+      font-size: clamp(2.4rem, 6vw, 4.9rem);
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #fff 0%, #c4c9cc 55%, #fff 75%, #8d9499 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 7px 20px rgba(0,0,0,0.45));
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 20px auto 0;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 26px;
+      padding: 48px 0 90px;
+      align-items: start;
+    }
+
+    .toc {
+      position: sticky;
+      top: 98px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .toc strong {
+      display: block;
+      color: var(--gold);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .toc a {
+      display: block;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 7px;
+      font-size: 0.92rem;
+      transition: 0.18s ease;
+    }
+
+    .toc a:hover {
+      color: var(--gold);
+      background: rgba(255, 184, 31, 0.06);
+    }
+
+    .guide-content {
+      display: grid;
+      gap: 20px;
+    }
+
+    .section-card {
+      padding: clamp(24px, 4vw, 38px);
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), transparent),
+        var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .section-card h2 {
+      color: var(--gold);
+      font-size: clamp(1.45rem, 3vw, 2.05rem);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .section-card h3 {
+      color: var(--gold-2);
+      font-size: 1.08rem;
+      margin: 26px 0 9px;
+    }
+
+    .section-card p,
+    .section-card li {
+      color: #d5dadd;
+    }
+
+    .section-card ul,
+    .section-card ol {
+      padding-left: 22px;
+      margin-top: 10px;
+    }
+
+    .section-card li + li {
+      margin-top: 7px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .mini-card {
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.035);
+    }
+
+    .mini-card strong {
+      display: block;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .mini-card span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0 8px 8px 0;
+    }
+
+    .badge-public {
+      color: #061014;
+      background: var(--blue);
+    }
+
+    .badge-admin {
+      color: #090b0c;
+      background: var(--gold);
+    }
+
+    .example {
+      margin: 14px 0;
+      padding: 16px;
+      border-left: 3px solid var(--gold);
+      border-radius: 8px;
+      background: rgba(255, 184, 31, 0.06);
+      overflow-x: auto;
+    }
+
+    .example code {
+      display: block;
+      width: max-content;
+      min-width: 100%;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      color: var(--gold-2);
+    }
+
+    .warning {
+      margin-top: 14px;
+      padding: 15px 17px;
+      border: 1px solid rgba(255, 184, 31, 0.22);
+      border-radius: 10px;
+      background: rgba(255, 184, 31, 0.055);
+      color: #e5e8ea;
+    }
+
+    .command-table {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .command-row {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 16px;
+      padding: 14px 15px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 9px;
+      background: rgba(255,255,255,0.035);
+      align-items: center;
+    }
+
+    .command-row code {
+      width: max-content;
+    }
+
+    .command-row span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .metric-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .metric {
+      padding: 13px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 9px;
+      background: rgba(255,255,255,0.032);
+    }
+
+    .metric b {
+      color: var(--gold-2);
+    }
+
+    .metric small {
+      display: block;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .site-footer {
+      padding: 48px 0 22px;
+      background: rgba(5, 8, 10, 0.88);
+      border-top: 1px solid rgba(255, 184, 31, 0.16);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr 1fr;
+      gap: 42px;
+      padding-bottom: 34px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .footer-brand p {
+      margin-top: 16px;
+      max-width: 310px;
+      color: var(--muted);
+    }
+
+    .footer-col h4 {
+      color: #f5f5f5;
+      margin-bottom: 14px;
+      font-size: 0.92rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .footer-col a {
+      display: block;
+      color: var(--muted);
+      margin: 8px 0;
+      transition: color 0.2s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: #7f878d;
+      font-size: 0.82rem;
+      padding-top: 20px;
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        position: static;
+      }
+
+      .toc nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        width: min(var(--max-width), calc(100% - 24px));
+      }
+
+      .nav-wrap {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .grid-2,
+      .metric-list,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .command-row {
+        grid-template-columns: 1fr;
+      }
+
+      .toc nav {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand" aria-label="Bulldozer Discord Bot főoldal">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 64 72" fill="none">
+            <path d="M32 3 57 11v21c0 18-10 29-25 37C17 61 7 50 7 32V11L32 3Z" stroke="currentColor" stroke-width="2.8"/>
+            <path d="M19 42h26M22 42V28h20v14M27 28v-6h10v6M25 35h3m4 0h3m4 0h3" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="m17 17 15-5 15 5" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>BULLDOZER</strong>
+          <span>DISCORD BOT</span>
+        </span>
+      </a>
+
+      <div class="header-actions">
+        <a class="top-link" href="index.html">← Főoldal</a>
+        <a class="top-link" href="privacy.html">Adatvédelem</a>
+        <a class="top-link" href="terms.html">Feltételek</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <span class="kicker">Dokumentáció</span>
+        <h1>Bulldozer útmutató</h1>
+        <p>
+          Részletes használati útmutató új és haladó felhasználóknak: beállítás,
+          statisztikák, grafikonok, térképek, foglalásfigyelés és admin funkciók.
+        </p>
+      </div>
+    </section>
+
+    <div class="container layout">
+      <aside class="toc" aria-label="Tartalomjegyzék">
+        <strong>Tartalom</strong>
+        <nav>
+          <a href="#start">Gyors kezdés</a>
+          <a href="#permissions">Jogosultságok</a>
+          <a href="#world">Világ beállítása</a>
+          <a href="#stats">Statisztikák</a>
+          <a href="#daily">Egy nap alatt</a>
+          <a href="#charts">Grafikon típusok</a>
+          <a href="#map">Térkép</a>
+          <a href="#conquest">Foglalásfigyelés</a>
+          <a href="#alliances">Szövetségek</a>
+          <a href="#help">Segítség és hibák</a>
+        </nav>
+      </aside>
+
+      <div class="guide-content">
+        <section class="section-card" id="start">
+          <span class="badge badge-public">Mindenki</span>
+          <span class="badge badge-admin">Admin funkciók is</span>
+          <h2>Gyors kezdés</h2>
+          <p>
+            A Bulldozer Discord Bot Klánháború szerverekhez készült segédbot. Tud világot kezelni,
+            térképeket generálni, statisztikákat és ranglistákat rajzolni, illetve automatikus
+            foglalásértesítéseket küldeni Discord csatornába.
+          </p>
+
+          <ol>
+            <li>Hívd meg a botot a Discord szerveredre.</li>
+            <li>Egy szerver adminisztrátor állítsa be a világot: <code>/vilag beallit</code>.</li>
+            <li>Próbáld ki a publikus parancsokat: <code>/stat</code>, <code>/terkep</code>, <code>/segitseg</code>.</li>
+            <li>Ha kell élő foglalásfigyelés, adminisztrátor állítsa be: <code>/foglalas hozzaad</code>.</li>
+          </ol>
+
+          <div class="warning">
+            A legtöbb statisztika és térkép csak akkor működik, ha a szerveren már be van állítva az alapértelmezett világ.
+          </div>
+        </section>
+
+        <section class="section-card" id="permissions">
+          <h2>Jogosultságok</h2>
+          <p>
+            A bot kétféle parancsot használ: mindenki által elérhető parancsokat és szerver adminisztrátori parancsokat.
+          </p>
+
+          <div class="grid-2">
+            <div class="mini-card">
+              <strong>Minden tag használhatja</strong>
+              <span><code>/stat</code>, <code>/terkep</code>, <code>/segitseg</code>, <code>/vilag info</code></span>
+            </div>
+            <div class="mini-card">
+              <strong>Csak szerver adminisztrátor</strong>
+              <span><code>/vilag beallit</code>, <code>/vilag torol</code>, <code>/foglalas</code>, <code>/szovetsegek</code></span>
+            </div>
+          </div>
+
+          <p>
+            Az admin parancsok azért védettek, mert szerver szintű beállításokat módosítanak, csatornába küldött automatikus értesítéseket hoznak létre,
+            vagy a térképen megjelenő szövetségi jelöléseket kezelik.
+          </p>
+        </section>
+
+        <section class="section-card" id="world">
+          <span class="badge badge-admin">Admin</span>
+          <h2>Világ beállítása</h2>
+          <p>
+            A világ határozza meg, hogy a bot melyik Klánháború világ adatait használja. Ezt egyszer kell beállítani szerverenként.
+          </p>
+
+          <div class="command-table">
+            <div class="command-row">
+              <code>/vilag beallit</code>
+              <span>Beállítja a szerver alapértelmezett világát. Példa: <code>hu100</code> vagy teljes világcím.</span>
+            </div>
+            <div class="command-row">
+              <code>/vilag info</code>
+              <span>Megmutatja az aktuálisan beállított világot. Ezt minden tag használhatja.</span>
+            </div>
+            <div class="command-row">
+              <code>/vilag torol</code>
+              <span>Törli a szerver világbeállítását. A figyelések megmaradhatnak, de világ nélkül nem futnak.</span>
+            </div>
+          </div>
+
+          <div class="example"><code>/vilag beallit vilag:hu100</code></div>
+        </section>
+
+        <section class="section-card" id="stats">
+          <span class="badge badge-public">Mindenki</span>
+          <h2>Statisztikák és ranglisták</h2>
+          <p>
+            A <code>/stat</code> parancscsoport különböző ranglistákat és grafikonokat készít. A legtöbb parancsnál választható a
+            <code>top</code> érték és a <code>grafikon</code> megjelenés.
+          </p>
+
+          <div class="command-table">
+            <div class="command-row">
+              <code>/stat klanok</code>
+              <span>A világ legjobb klánjainak ranglistája.</span>
+            </div>
+            <div class="command-row">
+              <code>/stat jatekosok</code>
+              <span>A világ legjobb játékosainak ranglistája.</span>
+            </div>
+            <div class="command-row">
+              <code>/stat dominancia</code>
+              <span>Megmutatja, mely klánok birtokolják a legtöbb falut a világban.</span>
+            </div>
+            <div class="command-row">
+              <code>/stat kontinens-klanok</code>
+              <span>Egy konkrét kontinens, például <code>K45</code>, legjobb klánjai.</span>
+            </div>
+            <div class="command-row">
+              <code>/stat kontinens-jatekosok</code>
+              <span>Egy konkrét kontinens legjobb játékosai. Opcionálisan szűrhető egy klánra.</span>
+            </div>
+            <div class="command-row">
+              <code>/stat legyozott-klan</code>
+              <span>Klánok legyőzött ellenfelek szerinti ranglistája.</span>
+            </div>
+            <div class="command-row">
+              <code>/stat legyozott-jatekos</code>
+              <span>Játékosok legyőzött ellenfelek szerinti ranglistája.</span>
+            </div>
+            <div class="command-row">
+              <code>/stat eredmenyek</code>
+              <span>Foglalási mérföldkövek: legtöbb foglalás, faluvesztés vagy barbár foglalás.</span>
+            </div>
+            <div class="command-row">
+              <code>/stat haboruk</code>
+              <span>Aktív klánok közötti konfliktusok az elmúlt időszak foglalásai alapján.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="daily">
+          <span class="badge badge-public">Mindenki</span>
+          <h2>/stat egy-nap-alatt</h2>
+          <p>
+            Ez a legösszetettebb stat parancs. Napi teljesítményt vagy játékosonkénti legjobb napi rekordokat jelenít meg.
+            A bot automatikusan eldönti, hogy az adott kategória napi változásként vagy személyes legjobb napként számolható.
+          </p>
+
+          <h3>Kategóriák</h3>
+          <div class="metric-list">
+            <div class="metric"><b>Pont</b><small>Napi pontnövekedés. Csak önmagában futtatható.</small></div>
+            <div class="metric"><b>Falu</b><small>Napi falunövekedés. Csak önmagában futtatható.</small></div>
+            <div class="metric"><b>Farm</b><small>Farmolt nyersanyagok, személyes legjobb nap alapján.</small></div>
+            <div class="metric"><b>Gyűjti</b><small>Összegyűjtött nyersanyagok, személyes legjobb nap alapján.</small></div>
+            <div class="metric"><b>Fosztott falu</b><small>Kifosztott falvak száma.</small></div>
+            <div class="metric"><b>Hódítás</b><small>Meghódított falvak száma.</small></div>
+            <div class="metric"><b>OD támadó</b><small>Legyőzött egységek támadóként.</small></div>
+            <div class="metric"><b>OD védő / OD támogató / OD összes</b><small>OD rekord kategóriák.</small></div>
+          </div>
+
+          <h3>Több kategória egyszerre</h3>
+          <p>
+            Rekord kategóriák együtt is megjeleníthetők egy grafikonon. Például a <code>Farm</code> és <code>Gyűjti</code>
+            együtt oszlopdiagramon vagy egyszerűsített grafikonon két adatsorként jelenik meg.
+          </p>
+
+          <div class="example"><code>/stat egy-nap-alatt kategoria:Farm plusz-kategoria:Gyűjti klan:Összes top:25 grafikon:Egyszerűsített grafikon</code></div>
+          <div class="example"><code>/stat egy-nap-alatt kategoria:Farm,Gyűjti,Fosztott falu,Hódítás klan:[BALL] grafikon:Oszlopdiagram</code></div>
+
+          <div class="warning">
+            <strong>Fontos:</strong> <code>Pont</code> és <code>Falu</code> napi változásként számolódik, ezért ezek nem keverhetők
+            más kategóriával. Ha <code>Pont</code> vagy <code>Falu</code> van kiválasztva, a <code>plusz-kategoria</code> nem ajánl fel új kategóriát.
+          </div>
+
+          <h3>Klán választás</h3>
+          <p>
+            A <code>klan</code> mező opcionális. Ha nem adsz meg klánt, a bot alapból <code>Összes</code> klánra készít ranglistát.
+          </p>
+          <ul>
+            <li><code>klan:Összes</code> - minden klán között rangsorol.</li>
+            <li><code>klan:[BALL]</code> - egy klán minden jelenlegi tagját listázza.</li>
+            <li><code>klan:[BALL], [ABC]</code> - több kiválasztott klánt hasonlít össze.</li>
+          </ul>
+        </section>
+
+        <section class="section-card" id="charts">
+          <h2>Grafikon típusok</h2>
+          <p>
+            A legtöbb stat parancsnál a <code>grafikon</code> mezővel választható, hogyan jelenjen meg az eredmény.
+            Alapértelmezésként az egyszerűsített grafikon készül, mert ez olvasható és jól működik nagyobb listáknál is.
+          </p>
+
+          <div class="grid-2">
+            <div class="mini-card">
+              <strong>Egyszerűsített grafikon</strong>
+              <span>Letisztult oszlopos megjelenés, a nevek közvetlenül az oszlopok alatt vannak.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Oszlopdiagram</strong>
+              <span>Részletesebb oszlopdiagram, több kategóriával is használható.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Vízszintes sávdiagram</strong>
+              <span>Ranglista jellegű, hosszabb neveknél is jól olvasható.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Kördiagram</strong>
+              <span>Arányok megmutatására jó. Legfeljebb kb. 25 elemnél marad szép.</span>
+            </div>
+          </div>
+
+          <div class="warning">
+            Több napi kategória egyszerre jelenleg oszlopdiagramon és egyszerűsített grafikonon jelenik meg szépen.
+          </div>
+        </section>
+
+        <section class="section-card" id="map">
+          <span class="badge badge-public">Mindenki</span>
+          <h2>/terkep</h2>
+          <p>
+            A <code>/terkep</code> nagy felbontású Klánháború térképet készít. Használható teljes világra vagy kiválasztott kontinensekre.
+          </p>
+
+          <h3>Fontos beállítások</h3>
+          <ul>
+            <li><code>kontinensek</code> - például <code>K45</code> vagy több kontinens vesszővel.</li>
+            <li><code>top_klanok</code> - hány legerősebb klán legyen kiemelve.</li>
+            <li><code>barbarok</code> - barbár falvak megjelenítése.</li>
+            <li><code>jatekosok</code> - klán nélküli vagy egyéb játékosok megjelenítése.</li>
+            <li><code>meret</code> - falvak mérete: normális, 1,5x, 2x vagy 3x.</li>
+            <li><code>szovetsegek</code> - beállított szövetségi csoportok színeinek használata.</li>
+          </ul>
+
+          <div class="example"><code>/terkep kontinensek:K45 top_klanok:10 meret:nagyobb szovetsegek:Igen</code></div>
+        </section>
+
+        <section class="section-card" id="conquest">
+          <span class="badge badge-admin">Admin</span>
+          <h2>Foglalásfigyelés</h2>
+          <p>
+            A <code>/foglalas</code> parancscsoport élő foglalásértesítéseket kezel. Csak szerver adminisztrátorok használhatják,
+            mert csatornákat és automatikus értesítéseket állít be.
+          </p>
+
+          <div class="command-table">
+            <div class="command-row">
+              <code>/foglalas hozzaad</code>
+              <span>Új foglalásfigyelést hoz létre megadott csatornába.</span>
+            </div>
+            <div class="command-row">
+              <code>/foglalas lista</code>
+              <span>Kilistázza a szerveren beállított figyeléseket és azonosítóikat.</span>
+            </div>
+            <div class="command-row">
+              <code>/foglalas modosit</code>
+              <span>Meglévő figyelés klánjait, kontinensét, állapotát vagy szűrőit módosítja.</span>
+            </div>
+            <div class="command-row">
+              <code>/foglalas teszt</code>
+              <span>Mintaértesítést küld, hogy lásd, hogyan fog kinézni a csatornában.</span>
+            </div>
+            <div class="command-row">
+              <code>/foglalas torol</code>
+              <span>Véglegesen töröl egy figyelést.</span>
+            </div>
+          </div>
+
+          <h3>Szűrők</h3>
+          <ul>
+            <li><code>klanok</code> - egy vagy több klán rövidítése, neve vagy ID-je.</li>
+            <li><code>kontinens</code> - minden kontinens vagy konkrét kontinens, például <code>K45</code>.</li>
+            <li><code>nyereseg</code> - játékosok elleni faluszerzések megjelenítése.</li>
+            <li><code>veszteseg</code> - játékosok elleni faluvesztések megjelenítése.</li>
+            <li><code>barbar</code> - barbár és bónuszfalvak foglalásainak megjelenítése.</li>
+            <li><code>belso</code> - klántárson belüli foglalások megjelenítése.</li>
+          </ul>
+
+          <div class="example"><code>/foglalas hozzaad csatorna:#foglalasok klanok:[BALL], [ABC] kontinens:K45</code></div>
+        </section>
+
+        <section class="section-card" id="alliances">
+          <span class="badge badge-admin">Admin</span>
+          <h2>Szövetségek</h2>
+          <p>
+            A <code>/szovetsegek</code> parancsokkal több klánt közös színnel jelölhetsz a térképen. Ez akkor hasznos,
+            ha szövetséges vagy közösen kezelt klánokat szeretnél egyértelműen megkülönböztetni.
+          </p>
+
+          <div class="command-table">
+            <div class="command-row">
+              <code>/szovetsegek hozzaad</code>
+              <span>Új szövetséges kláncsoportot hoz létre kiválasztott színnel.</span>
+            </div>
+            <div class="command-row">
+              <code>/szovetsegek lista</code>
+              <span>Megmutatja a beállított szövetségi csoportokat.</span>
+            </div>
+            <div class="command-row">
+              <code>/szovetsegek modosit</code>
+              <span>Módosítja a csoport klánjait vagy színét.</span>
+            </div>
+            <div class="command-row">
+              <code>/szovetsegek torol</code>
+              <span>Törli a beállított szövetséget.</span>
+            </div>
+          </div>
+
+          <div class="example"><code>/szovetsegek hozzaad klanok:[BALL], [ABC], [XYZ] szin:arany</code></div>
+        </section>
+
+        <section class="section-card" id="help">
+          <span class="badge badge-public">Mindenki</span>
+          <h2>Segítség és gyakori hibák</h2>
+          <p>
+            A <code>/segitseg</code> parancs Discordon belül is ad egy rövid összefoglalót és linket erre az útmutatóra.
+          </p>
+
+          <h3>Nem jelenik meg egy admin parancs</h3>
+          <p>
+            Az admin parancsok csak Discord szerver adminisztrátoroknak láthatók. Ha most lett módosítva a jogosultság,
+            szükség lehet bot újraindításra és slash command sync-re.
+          </p>
+
+          <h3>Nem működik stat vagy térkép</h3>
+          <p>
+            Ellenőrizd, hogy be van-e állítva a világ: <code>/vilag info</code>. Ha nincs, admin állítsa be:
+            <code>/vilag beallit</code>.
+          </p>
+
+          <h3>Nem talál klánt vagy kontinenst</h3>
+          <p>
+            Használd az autocomplete ajánlásokat. Több értéknél vesszővel válaszd el az elemeket. Például:
+            <code>[BALL], [ABC]</code> vagy <code>K45, K55</code>.
+          </p>
+
+          <h3>Több kategóriás napi stat nem fut</h3>
+          <p>
+            A <code>Pont</code> és <code>Falu</code> csak önmagukban futtatható napi változásként. Több kategóriát
+            rekord kategóriákból válassz, például <code>Farm</code>, <code>Gyűjti</code>, <code>Fosztott falu</code>, <code>Hódítás</code>.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 64 72" fill="none">
+                <path d="M32 3 57 11v21c0 18-10 29-25 37C17 61 7 50 7 32V11L32 3Z" stroke="currentColor" stroke-width="2.8"/>
+                <path d="M19 42h26M22 42V28h20v14M27 28v-6h10v6M25 35h3m4 0h3m4 0h3" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="brand-text">
+              <strong>BULLDOZER</strong>
+              <span>DISCORD BOT</span>
+            </span>
+          </a>
+          <p>A legjobb társad a Klánháború világában. Építs, harcolj, győzz!</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Dokumentáció</h4>
+          <a href="guide.html">Útmutató</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Jogi</h4>
+          <a href="privacy.html">Adatvédelmi irányelvek</a>
+          <a href="terms.html">Szolgáltatási feltételek</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © <span id="year"></span> Bulldozer Discord Bot. Minden jog fenntartva.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
