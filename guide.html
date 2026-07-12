@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080b0d" />
+  <title>Útmutató | Bulldozer Discord Bot</title>
+  <meta
+    name="description"
+    content="Részletes útmutató a Bulldozer Discord Bot használatához: világ beállítása, statisztikák, térképek, foglalásfigyelés és szövetségek."
+  />
+  <style>
+    :root {
+      --bg: #060809;
+      --bg-soft: #0b0f12;
+      --panel: rgba(13, 17, 20, 0.94);
+      --panel-2: rgba(18, 22, 25, 0.92);
+      --line: rgba(255, 184, 31, 0.28);
+      --line-soft: rgba(255, 255, 255, 0.10);
+      --gold: #ffb81f;
+      --gold-2: #ffd160;
+      --text: #f4f6f7;
+      --muted: #a8afb4;
+      --green: #22c55e;
+      --blue: #38bdf8;
+      --red: #ff5b3f;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.48);
+      --max-width: 1180px;
+      --radius: 14px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      line-height: 1.72;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255, 184, 31, 0.08), transparent 29%),
+        radial-gradient(circle at 88% 12%, rgba(255, 98, 0, 0.05), transparent 25%),
+        linear-gradient(180deg, #050708 0%, #0a0d0f 100%);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.15;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.78), transparent 86%);
+      z-index: -1;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    code {
+      color: var(--gold-2);
+      font-weight: 850;
+      background: rgba(255, 184, 31, 0.08);
+      border: 1px solid rgba(255, 184, 31, 0.14);
+      border-radius: 5px;
+      padding: 1px 5px;
+    }
+    .container {
+      width: min(var(--max-width), calc(100% - 36px));
+      margin-inline: auto;
+    }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 184, 31, 0.18);
+      background: rgba(5, 8, 10, 0.9);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.28);
+    }
+    .nav-wrap {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+    }
+    .brand-mark {
+      width: 52px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      filter: drop-shadow(0 0 20px rgba(255, 184, 31, 0.22));
+    }
+    .brand-mark svg {
+      width: 100%;
+      height: 100%;
+    }
+    .brand-text strong {
+      display: block;
+      color: var(--gold);
+      font-size: 1.12rem;
+      line-height: 1;
+      letter-spacing: 0.07em;
+    }
+    .brand-text span {
+      display: block;
+      margin-top: 7px;
+      color: #d2a63b;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.31em;
+    }
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .top-link,
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid rgba(255, 184, 31, 0.55);
+      border-radius: 7px;
+      color: var(--gold);
+      font-size: 0.82rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: 0.2s ease;
+    }
+    .top-link:hover,
+    .btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 184, 31, 0.08);
+      box-shadow: 0 12px 26px rgba(255, 184, 31, 0.12);
+    }
+    .hero {
