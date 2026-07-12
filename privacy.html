@@ -289,6 +289,9 @@
       background:rgba(5,8,10,.72)
     }
 
+
+    .cta-wrap{padding:0 0 88px;background:#090c0e}.cta-container{width:min(1180px,calc(100% - 32px));margin:auto}.cta-banner{min-height:210px;border:1px solid rgba(255,184,31,.62);border-radius:10px;background:linear-gradient(90deg,rgba(7,9,10,.78),rgba(7,9,10,.92),rgba(7,9,10,.78)),url("assets/cta-castle.webp") center/cover no-repeat;display:grid;place-items:center;text-align:center;box-shadow:var(--shadow);overflow:hidden;position:relative}.cta-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,184,31,.08),transparent 25%,transparent 75%,rgba(255,184,31,.08)),linear-gradient(180deg,transparent,rgba(0,0,0,.18))}.cta-content{padding:28px;position:relative;z-index:1}.cta-content h2{color:#fff;font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.2;margin-bottom:7px}.cta-content p{color:#d3d7da;margin-bottom:22px}.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 20px;border:1px solid #ffcb43;border-radius:6px;color:#07090a;background:linear-gradient(180deg,#ffc73a 0%,#e7a60b 100%);box-shadow:0 16px 35px rgba(255,184,31,.18);font-weight:850;letter-spacing:.02em;text-transform:uppercase;transition:.2s}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 45px rgba(255,184,31,.28);background:linear-gradient(180deg,#ffd15a 0%,#efae11 100%)}
+    .site-footer{padding:48px 0 22px;background:linear-gradient(rgba(7,9,10,.82),rgba(7,9,10,.94)),url("assets/stone-texture.webp") center/1100px auto repeat;border-top:1px solid rgba(255,184,31,.16);text-align:left}.footer-container{width:min(1180px,calc(100% - 32px));margin:auto}.footer-grid{display:grid;grid-template-columns:1.45fr 1fr 1fr;gap:42px;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.10)}.footer-brand p{margin-top:16px;max-width:310px;color:var(--muted)}.footer-col h4{color:#f5f5f5;margin-bottom:14px;font-size:.92rem;letter-spacing:.04em;text-transform:uppercase}.footer-col a{display:block;color:var(--muted);margin:8px 0;transition:color .2s}.footer-col a:hover{color:var(--gold)}.footer-bottom{text-align:center;color:#7f878d;font-size:.82rem;padding-top:20px}
     @media(max-width:700px){
       .nav-wrap{width:min(100% - 22px,1180px)}
       .brand-text strong{font-size:.94rem}
@@ -296,7 +299,7 @@
       .brand-mark{width:42px;height:48px}
       .back-link{padding:0 11px;font-size:.70rem}
       .hero{padding-top:58px}
-      .policy-card{border-radius:12px}
+      .policy-card{border-radius:12px}.footer-grid{grid-template-columns:1fr}.cta-wrap{padding-bottom:56px}
     }
 
     @media(max-width:540px){
@@ -355,10 +358,8 @@
     </div>
   </main>
 
-  <footer class="site-footer">
-    © <span id="year"></span> Bulldozer Discord Bot.
-    <span id="footerRights">All rights reserved.</span>
-  </footer>
+  <section class="cta-wrap"><div class="cta-container"><div class="cta-banner"><div class="cta-content"><h2 id="ctaTitle"></h2><p id="ctaText"></p><a class="btn-primary" href="https://discord.com/oauth2/authorize?client_id=1525166413453590639&permissions=2147535936&integration_type=0&scope=bot+applications.commands" target="_blank" rel="noopener"><svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.5 5.34A16.5 16.5 0 0 0 15.44 4l-.5 1.02a15.4 15.4 0 0 0-5.88 0L8.56 4A16.8 16.8 0 0 0 4.5 5.34C1.93 9.17 1.23 12.9 1.58 16.58A16.3 16.3 0 0 0 6.55 19l1.2-1.64c-.66-.25-1.3-.57-1.9-.95.16-.12.31-.24.46-.36 3.67 1.7 7.66 1.7 11.28 0 .15.12.3.24.46.36-.6.38-1.24.7-1.9.95L17.45 19a16.3 16.3 0 0 0 4.97-2.42c.42-4.26-.72-7.96-2.92-11.24Z"/></svg><span id="ctaButton"></span></a></div></div></div></section>
+<footer class="site-footer"><div class="footer-container"><div class="footer-grid"><div class="footer-brand"><a href="index.html" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 64 72" fill="none"><path d="M32 3 57 11v21c0 18-10 29-25 37C17 61 7 50 7 32V11L32 3Z" stroke="currentColor" stroke-width="2.8"/><path d="M19 42h26M22 42V28h20v14M27 28v-6h10v6M25 35h3m4 0h3m4 0h3" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></span><span class="brand-text"><strong>BULLDOZER</strong><span>DISCORD BOT</span></span></a><p id="footerTagline"></p></div><div class="footer-col"><h4 id="footerDocsTitle"></h4><a href="guide.html" id="footerGuide"></a></div><div class="footer-col"><h4 id="footerLegalTitle"></h4><a href="privacy.html" id="footerPrivacy"></a><a href="terms.html" id="footerTerms"></a></div></div><div class="footer-bottom">© <span id="year"></span> Bulldozer Discord Bot. <span id="footerRights"></span></div></div></footer>
 
   <script>
     const translations = {
@@ -375,6 +376,15 @@
           "How the Bulldozer Discord Bot handles and protects information required for its operation.",
         updated: "Last updated: July 2026",
         rights: "All rights reserved.",
+        ctaTitle: "Ready to take your clan to the next level?",
+        ctaText: "Invite Bulldozer today!",
+        ctaButton: "Invite now",
+        footerTagline: "Your best companion in the world of Tribal Wars. Build, fight, win!",
+        footerDocsTitle: "Documentation",
+        footerGuide: "Guide",
+        footerLegalTitle: "Legal",
+        footerPrivacy: "Privacy Policy",
+        footerTerms: "Terms of Service",
         content: `
           <section class="policy-section">
             <h2>Information We Collect</h2>
@@ -467,6 +477,15 @@
           "Tájékoztató arról, hogyan kezeli és védi a Bulldozer Discord Bot a működéséhez szükséges adatokat.",
         updated: "Utolsó frissítés: 2026. július",
         rights: "Minden jog fenntartva.",
+        ctaTitle: "Készen állsz, hogy a klánod a következő szintre lépjen?",
+        ctaText: "Hívd meg a Bulldozert még ma!",
+        ctaButton: "Meghívás most",
+        footerTagline: "A legjobb társad a Klánháború világában. Építs, harcolj, győzz!",
+        footerDocsTitle: "Dokumentáció",
+        footerGuide: "Útmutató",
+        footerLegalTitle: "Jogi",
+        footerPrivacy: "Adatvédelmi irányelvek",
+        footerTerms: "Szolgáltatási feltételek",
         content: `
           <section class="policy-section">
             <h2>Az általunk kezelt adatok</h2>
@@ -586,6 +605,15 @@
       document.getElementById("updated").textContent = text.updated;
       document.getElementById("policyContent").innerHTML = text.content;
       document.getElementById("footerRights").textContent = text.rights;
+      document.getElementById("ctaTitle").textContent = text.ctaTitle;
+      document.getElementById("ctaText").textContent = text.ctaText;
+      document.getElementById("ctaButton").textContent = text.ctaButton;
+      document.getElementById("footerTagline").textContent = text.footerTagline;
+      document.getElementById("footerDocsTitle").textContent = text.footerDocsTitle;
+      document.getElementById("footerGuide").textContent = text.footerGuide;
+      document.getElementById("footerLegalTitle").textContent = text.footerLegalTitle;
+      document.getElementById("footerPrivacy").textContent = text.footerPrivacy;
+      document.getElementById("footerTerms").textContent = text.footerTerms;
 
       document.querySelectorAll(".language-button").forEach((button) => {
         const isActive = button.dataset.language === selectedLanguage;
