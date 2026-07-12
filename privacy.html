@@ -1,38 +1,611 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="theme-color" content="#080b0d"><title>Privacy Policy | Bulldozer Discord Bot</title><meta name="description" content="How the Bulldozer Discord Bot handles and protects information required for its operation."><style>
-:root{--bg:#060809;--panel:rgba(13,17,20,.94);--gold:#ffb81f;--gold2:#ffd160;--text:#f4f6f7;--muted:#a8afb4;--shadow:0 24px 80px rgba(0,0,0,.48);--max:980px}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{min-height:100vh;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);line-height:1.75;background:linear-gradient(rgba(6,9,11,.86),rgba(7,10,12,.96)),url("assets/stone-texture.webp") center/1100px auto repeat}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 20% 0%,rgba(255,184,31,.08),transparent 28%),radial-gradient(circle at 85% 12%,rgba(255,98,0,.05),transparent 25%),linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:auto,auto,42px 42px,42px 42px;z-index:-1}
-a{color:inherit;text-decoration:none}.site-header{position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,184,31,.18);background:rgba(5,8,10,.88);backdrop-filter:blur(16px);box-shadow:0 14px 34px rgba(0,0,0,.28)}
-.nav-wrap{width:min(1180px,calc(100% - 32px));min-height:78px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{display:inline-flex;align-items:center;gap:13px}.brand-mark{width:48px;height:54px;display:grid;place-items:center;color:var(--gold);filter:drop-shadow(0 0 20px rgba(255,184,31,.22))}.brand-mark svg{width:100%;height:100%}
-.brand-text strong{display:block;color:var(--gold);font-size:1.08rem;line-height:1;letter-spacing:.07em}.brand-text span{display:block;margin-top:7px;color:#d2a63b;font-size:.67rem;font-weight:800;letter-spacing:.31em}
-.back-link{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:0 16px;color:var(--gold);font-size:.82rem;font-weight:850;letter-spacing:.04em;text-transform:uppercase;border:1px solid rgba(255,184,31,.55);border-radius:7px;transition:.2s}
-.back-link:hover{transform:translateY(-2px);background:rgba(255,184,31,.08);box-shadow:0 12px 26px rgba(255,184,31,.12)}
-.hero{position:relative;padding:82px 0 44px;text-align:center;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 20%,rgba(255,184,31,.10),transparent 35%);pointer-events:none}
-.hero-inner{position:relative;width:min(var(--max),calc(100% - 32px));margin:auto}.kicker{display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-size:.76rem;font-weight:850;letter-spacing:.15em;text-transform:uppercase}
-.kicker:before,.kicker:after{content:"";width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}.kicker:after{background:linear-gradient(90deg,var(--gold),transparent)}
-h1{margin-top:18px;font-size:clamp(2.4rem,6vw,4.8rem);line-height:1.05;letter-spacing:-.035em;text-transform:uppercase;background:linear-gradient(180deg,#fff 0%,#c4c9cc 55%,#fff 75%,#8d9499 100%);background-clip:text;-webkit-background-clip:text;color:transparent;filter:drop-shadow(0 7px 20px rgba(0,0,0,.45))}
-.hero p{max-width:720px;margin:20px auto 0;color:var(--muted);font-size:1.02rem}.updated{display:inline-block;margin-top:18px;padding:7px 12px;border:1px solid rgba(255,184,31,.26);border-radius:999px;color:var(--gold2);background:rgba(8,11,13,.62);font-size:.78rem;font-weight:750}
-.page-wrap{width:min(var(--max),calc(100% - 32px));margin:auto;padding:0 0 80px}.policy-card{padding:clamp(26px,4vw,46px);border:1px solid rgba(255,255,255,.11);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.025),transparent),var(--panel);box-shadow:var(--shadow)}
-.policy-section+.policy-section{margin-top:34px;padding-top:34px;border-top:1px solid rgba(255,255,255,.09)}h2{color:var(--gold);font-size:clamp(1.25rem,2.2vw,1.65rem);line-height:1.3;margin-bottom:12px}p,li{color:#d5dadd}ul{margin-top:12px;padding-left:22px}li+li{margin-top:7px}
-.note{margin-top:18px;padding:16px 18px;border-left:3px solid var(--gold);border-radius:8px;background:rgba(255,184,31,.06);color:#e5e8ea}.contact-box{margin-top:16px;padding:18px;border:1px solid rgba(255,184,31,.22);border-radius:10px;background:rgba(255,184,31,.05)}.contact-box a{color:var(--gold2);font-weight:800}
-.site-footer{border-top:1px solid rgba(255,184,31,.16);padding:26px 16px;text-align:center;color:#7f878d;font-size:.82rem;background:rgba(5,8,10,.72)}
-@media(max-width:640px){.nav-wrap{width:min(100% - 22px,1180px)}.brand-text strong{font-size:.94rem}.brand-text span{font-size:.58rem;letter-spacing:.24em}.brand-mark{width:42px;height:48px}.back-link{padding:0 12px;font-size:.72rem}.hero{padding-top:58px}.policy-card{border-radius:12px}}
-</style></head><body>
-<header class="site-header"><div class="nav-wrap">
-<a href="index.html" class="brand" aria-label="Bulldozer Discord Bot főoldal">
-<span class="brand-mark"><svg viewBox="0 0 64 72" fill="none"><path d="M32 3 57 11v21c0 18-10 29-25 37C17 61 7 50 7 32V11L32 3Z" stroke="currentColor" stroke-width="2.8"/><path d="M19 42h26M22 42V28h20v14M27 28v-6h10v6M25 35h3m4 0h3m4 0h3" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="m17 17 15-5 15 5" stroke="currentColor" stroke-width="2"/></svg></span>
-<span class="brand-text"><strong>BULLDOZER</strong><span>DISCORD BOT</span></span></a>
-<a class="back-link" href="index.html">← Vissza a főoldalra</a>
-</div></header>
-<main><section class="hero"><div class="hero-inner"><span class="kicker">Legal</span><h1>Privacy Policy</h1><p>How the Bulldozer Discord Bot handles and protects information required for its operation.</p><span class="updated">Last updated: July 2026</span></div></section><div class="page-wrap"><article class="policy-card">
-<section class="policy-section"><h2>Information We Collect</h2><p>Bulldozer Discord Bot may store the following information when required for its operation:</p><ul><li>Discord Server IDs</li><li>Discord Channel IDs</li><li>Discord User IDs when a command or feature requires them</li><li>Bot configuration and settings</li><li>Tribal Wars world, player or clan identifiers entered through bot commands</li></ul></section>
-<section class="policy-section"><h2>Information We Do Not Collect</h2><ul><li>Passwords</li><li>Discord account credentials</li><li>Private messages</li><li>Email addresses</li><li>Payment information</li><li>Historical channel messages unless a feature explicitly requires and discloses it</li></ul><div class="note">The bot is primarily command-based and processes information submitted through its slash commands.</div></section>
-<section class="policy-section"><h2>Purpose of Data Processing</h2><p>Collected information is used only to provide the bot's features, maintain server-specific settings, generate statistics and maps, track village conquests, and improve reliability.</p></section>
-<section class="policy-section"><h2>Data Sharing</h2><p>Personal information is not sold, rented, or shared with third parties, except when required by law or when technically necessary to provide the requested service.</p></section>
-<section class="policy-section"><h2>Data Security</h2><p>Reasonable technical and organisational measures are used to protect stored information against unauthorised access, loss, misuse, or disclosure.</p></section>
-<section class="policy-section"><h2>Data Retention and Removal</h2><p>Stored information is retained only for as long as it is needed for the operation of the bot. Server administrators may request deletion of stored server data by contacting the developer.</p></section>
-<section class="policy-section"><h2>Changes to This Policy</h2><p>This Privacy Policy may be updated when the bot's features or data practices change. The latest version will always be available on this page.</p></section>
-<section class="policy-section"><h2>Contact</h2><div class="contact-box">For privacy-related questions or data deletion requests, contact the developer at <a href="mailto:csutora8@gmail.com">csutora8@gmail.com</a>.</div></section>
-</article></div></main><footer class="site-footer">© <span id="year"></span> Bulldozer Discord Bot. Minden jog fenntartva.</footer><script>document.getElementById("year").textContent=new Date().getFullYear();</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="theme-color" content="#080b0d">
+  <title>Privacy Policy | Bulldozer Discord Bot</title>
+  <meta
+    id="metaDescription"
+    name="description"
+    content="How the Bulldozer Discord Bot handles and protects information required for its operation."
+  >
+
+  <style>
+    :root{
+      --bg:#060809;
+      --panel:rgba(13,17,20,.94);
+      --gold:#ffb81f;
+      --gold2:#ffd160;
+      --text:#f4f6f7;
+      --muted:#a8afb4;
+      --shadow:0 24px 80px rgba(0,0,0,.48);
+      --max:980px
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+
+    body{
+      min-height:100vh;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      line-height:1.75;
+      background:
+        linear-gradient(rgba(6,9,11,.86),rgba(7,10,12,.96)),
+        url("assets/stone-texture.webp") center/1100px auto repeat
+    }
+
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 20% 0%,rgba(255,184,31,.08),transparent 28%),
+        radial-gradient(circle at 85% 12%,rgba(255,98,0,.05),transparent 25%),
+        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+      background-size:auto,auto,42px 42px,42px 42px;
+      z-index:-1
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      border-bottom:1px solid rgba(255,184,31,.18);
+      background:rgba(5,8,10,.88);
+      backdrop-filter:blur(16px);
+      box-shadow:0 14px 34px rgba(0,0,0,.28)
+    }
+
+    .nav-wrap{
+      width:min(1180px,calc(100% - 32px));
+      min-height:78px;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px
+    }
+
+    .brand{display:inline-flex;align-items:center;gap:13px}
+    .brand-mark{
+      width:48px;
+      height:54px;
+      display:grid;
+      place-items:center;
+      color:var(--gold);
+      filter:drop-shadow(0 0 20px rgba(255,184,31,.22))
+    }
+
+    .brand-mark svg{width:100%;height:100%}
+
+    .brand-text strong{
+      display:block;
+      color:var(--gold);
+      font-size:1.08rem;
+      line-height:1;
+      letter-spacing:.07em
+    }
+
+    .brand-text span{
+      display:block;
+      margin-top:7px;
+      color:#d2a63b;
+      font-size:.67rem;
+      font-weight:800;
+      letter-spacing:.31em
+    }
+
+    .header-actions{
+      display:flex;
+      align-items:center;
+      gap:10px
+    }
+
+    .language-switch{
+      display:flex;
+      padding:3px;
+      border:1px solid rgba(255,184,31,.28);
+      border-radius:7px;
+      background:rgba(255,184,31,.04)
+    }
+
+    .language-button{
+      min-width:42px;
+      height:36px;
+      border:0;
+      border-radius:5px;
+      color:var(--muted);
+      background:transparent;
+      font:inherit;
+      font-size:.75rem;
+      font-weight:850;
+      cursor:pointer;
+      transition:.2s
+    }
+
+    .language-button:hover,
+    .language-button.active{
+      color:#090b0c;
+      background:var(--gold)
+    }
+
+    .back-link{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      min-height:44px;
+      padding:0 16px;
+      color:var(--gold);
+      font-size:.82rem;
+      font-weight:850;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      border:1px solid rgba(255,184,31,.55);
+      border-radius:7px;
+      transition:.2s
+    }
+
+    .back-link:hover{
+      transform:translateY(-2px);
+      background:rgba(255,184,31,.08);
+      box-shadow:0 12px 26px rgba(255,184,31,.12)
+    }
+
+    .hero{
+      position:relative;
+      padding:82px 0 44px;
+      text-align:center;
+      overflow:hidden
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 50% 20%,rgba(255,184,31,.10),transparent 35%);
+      pointer-events:none
+    }
+
+    .hero-inner{
+      position:relative;
+      width:min(var(--max),calc(100% - 32px));
+      margin:auto
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--gold);
+      font-size:.76rem;
+      font-weight:850;
+      letter-spacing:.15em;
+      text-transform:uppercase
+    }
+
+    .kicker:before,.kicker:after{
+      content:"";
+      width:34px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--gold))
+    }
+
+    .kicker:after{background:linear-gradient(90deg,var(--gold),transparent)}
+
+    h1{
+      margin-top:18px;
+      font-size:clamp(2.4rem,6vw,4.8rem);
+      line-height:1.05;
+      letter-spacing:-.035em;
+      text-transform:uppercase;
+      background:linear-gradient(180deg,#fff 0%,#c4c9cc 55%,#fff 75%,#8d9499 100%);
+      background-clip:text;
+      -webkit-background-clip:text;
+      color:transparent;
+      filter:drop-shadow(0 7px 20px rgba(0,0,0,.45))
+    }
+
+    .hero p{
+      max-width:720px;
+      margin:20px auto 0;
+      color:var(--muted);
+      font-size:1.02rem
+    }
+
+    .updated{
+      display:inline-block;
+      margin-top:18px;
+      padding:7px 12px;
+      border:1px solid rgba(255,184,31,.26);
+      border-radius:999px;
+      color:var(--gold2);
+      background:rgba(8,11,13,.62);
+      font-size:.78rem;
+      font-weight:750
+    }
+
+    .page-wrap{
+      width:min(var(--max),calc(100% - 32px));
+      margin:auto;
+      padding:0 0 80px
+    }
+
+    .policy-card{
+      padding:clamp(26px,4vw,46px);
+      border:1px solid rgba(255,255,255,.11);
+      border-radius:16px;
+      background:linear-gradient(180deg,rgba(255,255,255,.025),transparent),var(--panel);
+      box-shadow:var(--shadow)
+    }
+
+    .policy-section+.policy-section{
+      margin-top:34px;
+      padding-top:34px;
+      border-top:1px solid rgba(255,255,255,.09)
+    }
+
+    h2{
+      color:var(--gold);
+      font-size:clamp(1.25rem,2.2vw,1.65rem);
+      line-height:1.3;
+      margin-bottom:12px
+    }
+
+    p,li{color:#d5dadd}
+    ul{margin-top:12px;padding-left:22px}
+    li+li{margin-top:7px}
+
+    .note{
+      margin-top:18px;
+      padding:16px 18px;
+      border-left:3px solid var(--gold);
+      border-radius:8px;
+      background:rgba(255,184,31,.06);
+      color:#e5e8ea
+    }
+
+    .contact-box{
+      margin-top:16px;
+      padding:18px;
+      border:1px solid rgba(255,184,31,.22);
+      border-radius:10px;
+      background:rgba(255,184,31,.05)
+    }
+
+    .contact-box a{color:var(--gold2);font-weight:800}
+
+    .site-footer{
+      border-top:1px solid rgba(255,184,31,.16);
+      padding:26px 16px;
+      text-align:center;
+      color:#7f878d;
+      font-size:.82rem;
+      background:rgba(5,8,10,.72)
+    }
+
+    @media(max-width:700px){
+      .nav-wrap{width:min(100% - 22px,1180px)}
+      .brand-text strong{font-size:.94rem}
+      .brand-text span{font-size:.58rem;letter-spacing:.24em}
+      .brand-mark{width:42px;height:48px}
+      .back-link{padding:0 11px;font-size:.70rem}
+      .hero{padding-top:58px}
+      .policy-card{border-radius:12px}
+    }
+
+    @media(max-width:540px){
+      .back-link span{display:none}
+      .back-link{width:44px;padding:0;justify-content:center}
+      .language-button{min-width:37px}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a href="index.html" class="brand" id="brandLink" aria-label="Bulldozer Discord Bot home page">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 64 72" fill="none">
+            <path d="M32 3 57 11v21c0 18-10 29-25 37C17 61 7 50 7 32V11L32 3Z" stroke="currentColor" stroke-width="2.8"/>
+            <path d="M19 42h26M22 42V28h20v14M27 28v-6h10v6M25 35h3m4 0h3m4 0h3" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="m17 17 15-5 15 5" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>BULLDOZER</strong>
+          <span>DISCORD BOT</span>
+        </span>
+      </a>
+
+      <div class="header-actions">
+        <div class="language-switch" aria-label="Language selection">
+          <button class="language-button" type="button" data-language="hu">HU</button>
+          <button class="language-button" type="button" data-language="en">EN</button>
+        </div>
+
+        <a class="back-link" href="index.html" id="backLink">
+          <span aria-hidden="true">←</span>
+          <span id="backText">Back to home</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="kicker" id="kicker">Legal</span>
+        <h1 id="pageTitle">Privacy Policy</h1>
+        <p id="heroDescription">
+          How the Bulldozer Discord Bot handles and protects information required for its operation.
+        </p>
+        <span class="updated" id="updated">Last updated: July 2026</span>
+      </div>
+    </section>
+
+    <div class="page-wrap">
+      <article class="policy-card" id="policyContent"></article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    © <span id="year"></span> Bulldozer Discord Bot.
+    <span id="footerRights">All rights reserved.</span>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        htmlLang: "en",
+        documentTitle: "Privacy Policy | Bulldozer Discord Bot",
+        metaDescription:
+          "How the Bulldozer Discord Bot handles and protects information required for its operation.",
+        brandAria: "Bulldozer Discord Bot home page",
+        back: "Back to home",
+        kicker: "Legal",
+        title: "Privacy Policy",
+        description:
+          "How the Bulldozer Discord Bot handles and protects information required for its operation.",
+        updated: "Last updated: July 2026",
+        rights: "All rights reserved.",
+        content: `
+          <section class="policy-section">
+            <h2>Information We Collect</h2>
+            <p>Bulldozer Discord Bot may store the following information when required for its operation:</p>
+            <ul>
+              <li>Discord Server IDs</li>
+              <li>Discord Channel IDs</li>
+              <li>Discord User IDs when a command or feature requires them</li>
+              <li>Bot configuration and settings</li>
+              <li>Tribal Wars world, player or clan identifiers entered through bot commands</li>
+            </ul>
+          </section>
+
+          <section class="policy-section">
+            <h2>Information We Do Not Collect</h2>
+            <ul>
+              <li>Passwords</li>
+              <li>Discord account credentials</li>
+              <li>Private messages</li>
+              <li>Email addresses</li>
+              <li>Payment information</li>
+              <li>Historical channel messages</li>
+            </ul>
+            <div class="note">
+              The bot is command-based and processes information submitted through its slash commands.
+              It does not request permission to read message history.
+            </div>
+          </section>
+
+          <section class="policy-section">
+            <h2>Purpose of Data Processing</h2>
+            <p>
+              Collected information is used only to provide the bot's features, maintain server-specific
+              settings, generate statistics and maps, track village conquests, and improve reliability.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <h2>Data Sharing</h2>
+            <p>
+              Personal information is not sold, rented, or shared with third parties, except when required
+              by law or when technically necessary to provide the requested service.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <h2>Data Security</h2>
+            <p>
+              Reasonable technical and organisational measures are used to protect stored information
+              against unauthorised access, loss, misuse, or disclosure.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <h2>Data Retention and Removal</h2>
+            <p>
+              Stored information is retained only for as long as it is needed for the operation of the bot.
+              Server administrators may request deletion of stored server data by contacting the developer.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <h2>Changes to This Policy</h2>
+            <p>
+              This Privacy Policy may be updated when the bot's features or data practices change.
+              The latest version will always be available on this page.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <h2>Contact</h2>
+            <div class="contact-box">
+              For privacy-related questions or data deletion requests, contact the developer at
+              <a href="mailto:csutora8@gmail.com">csutora8@gmail.com</a>.
+            </div>
+          </section>
+        `
+      },
+
+      hu: {
+        htmlLang: "hu",
+        documentTitle: "Adatvédelmi irányelvek | Bulldozer Discord Bot",
+        metaDescription:
+          "Tájékoztató arról, hogyan kezeli és védi a Bulldozer Discord Bot a működéséhez szükséges adatokat.",
+        brandAria: "Bulldozer Discord Bot főoldal",
+        back: "Vissza a főoldalra",
+        kicker: "Jogi információk",
+        title: "Adatvédelmi irányelvek",
+        description:
+          "Tájékoztató arról, hogyan kezeli és védi a Bulldozer Discord Bot a működéséhez szükséges adatokat.",
+        updated: "Utolsó frissítés: 2026. július",
+        rights: "Minden jog fenntartva.",
+        content: `
+          <section class="policy-section">
+            <h2>Az általunk kezelt adatok</h2>
+            <p>
+              A Bulldozer Discord Bot a működéséhez szükséges esetekben az alábbi adatokat tárolhatja:
+            </p>
+            <ul>
+              <li>Discord-szerverazonosítók</li>
+              <li>Discord-csatornaazonosítók</li>
+              <li>Discord-felhasználóazonosítók, amikor egy parancs vagy funkció ezt igényli</li>
+              <li>A bot beállításai és konfigurációs adatai</li>
+              <li>A parancsokon keresztül megadott Klánháború-világok, játékosok és klánok azonosítói</li>
+            </ul>
+          </section>
+
+          <section class="policy-section">
+            <h2>Az általunk nem gyűjtött adatok</h2>
+            <ul>
+              <li>Jelszavak</li>
+              <li>Discord-fiókhoz tartozó bejelentkezési adatok</li>
+              <li>Privát üzenetek</li>
+              <li>E-mail-címek</li>
+              <li>Fizetési adatok</li>
+              <li>Korábbi csatornaüzenetek</li>
+            </ul>
+            <div class="note">
+              A bot parancsalapú, és a perjeles parancsokon keresztül megadott adatokat dolgozza fel.
+              Nem kér jogosultságot az üzenetelőzmények visszaolvasására.
+            </div>
+          </section>
+
+          <section class="policy-section">
+            <h2>Az adatkezelés célja</h2>
+            <p>
+              A kezelt adatokat kizárólag a bot funkcióinak biztosítására, a szerverenkénti beállítások
+              megőrzésére, statisztikák és térképek készítésére, foglalások követésére, valamint a
+              szolgáltatás megbízhatóságának javítására használjuk.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <h2>Adatok megosztása</h2>
+            <p>
+              Személyes adatokat nem értékesítünk, nem adunk bérbe, és nem osztunk meg harmadik féllel,
+              kivéve, ha azt jogszabály írja elő, vagy a kért szolgáltatás technikai biztosításához
+              feltétlenül szükséges.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <h2>Adatbiztonság</h2>
+            <p>
+              Ésszerű technikai és szervezési intézkedéseket alkalmazunk a tárolt adatok jogosulatlan
+              hozzáféréssel, elvesztéssel, visszaéléssel vagy nyilvánosságra hozatallal szembeni védelmére.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <h2>Adatmegőrzés és törlés</h2>
+            <p>
+              Az adatokat csak addig őrizzük meg, ameddig azok a bot működéséhez szükségesek.
+              A szerver adminisztrátorai a fejlesztővel történő kapcsolatfelvétellel kérhetik a
+              szerverhez kapcsolódó tárolt adatok törlését.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <h2>Az irányelvek módosítása</h2>
+            <p>
+              Az adatvédelmi irányelvek a bot funkcióinak vagy adatkezelési gyakorlatának változásakor
+              frissülhetnek. A legújabb változat mindig ezen az oldalon lesz elérhető.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <h2>Kapcsolat</h2>
+            <div class="contact-box">
+              Adatvédelmi kérdés vagy adattörlési kérelem esetén ezen az e-mail-címen léphetsz kapcsolatba
+              a fejlesztővel:
+              <a href="mailto:csutora8@gmail.com">csutora8@gmail.com</a>.
+            </div>
+          </section>
+        `
+      }
+    };
+
+    function detectLanguage() {
+      const savedLanguage = localStorage.getItem("bulldozer-language");
+
+      if (savedLanguage === "hu" || savedLanguage === "en") {
+        return savedLanguage;
+      }
+
+      const browserLanguages = navigator.languages?.length
+        ? navigator.languages
+        : [navigator.language || "en"];
+
+      return browserLanguages.some((language) =>
+        String(language).toLowerCase().startsWith("hu")
+      )
+        ? "hu"
+        : "en";
+    }
+
+    function applyLanguage(language, savePreference = false) {
+      const selectedLanguage = translations[language] ? language : "en";
+      const text = translations[selectedLanguage];
+
+      document.documentElement.lang = text.htmlLang;
+      document.title = text.documentTitle;
+      document.getElementById("metaDescription").content = text.metaDescription;
+      document.getElementById("brandLink").setAttribute("aria-label", text.brandAria);
+      document.getElementById("backText").textContent = text.back;
+      document.getElementById("kicker").textContent = text.kicker;
+      document.getElementById("pageTitle").textContent = text.title;
+      document.getElementById("heroDescription").textContent = text.description;
+      document.getElementById("updated").textContent = text.updated;
+      document.getElementById("policyContent").innerHTML = text.content;
+      document.getElementById("footerRights").textContent = text.rights;
+
+      document.querySelectorAll(".language-button").forEach((button) => {
+        const isActive = button.dataset.language === selectedLanguage;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+
+      if (savePreference) {
+        localStorage.setItem("bulldozer-language", selectedLanguage);
+      }
+    }
+
+    document.querySelectorAll(".language-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        applyLanguage(button.dataset.language, true);
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    applyLanguage(detectLanguage());
+  </script>
+</body>
+</html>
