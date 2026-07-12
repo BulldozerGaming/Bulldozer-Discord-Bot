@@ -1001,8 +1001,7 @@
         <a class="nav-link" href="#features">Funkciók</a>
         <a class="nav-link" href="#docs">Dokumentáció</a>
 
-        <!-- IDE ÍRD A SAJÁT DISCORD MEGHÍVÓ LINKED -->
-        <a class="nav-cta" href="https://discord.com/oauth2/authorize?client_id=IDE_A_CLIENT_ID" target="_blank" rel="noopener">
+        <a class="nav-cta invite-link" href="#" target="_blank" rel="noopener">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M19.5 5.34A16.5 16.5 0 0 0 15.44 4l-.5 1.02a15.4 15.4 0 0 0-5.88 0L8.56 4A16.8 16.8 0 0 0 4.5 5.34C1.93 9.17 1.23 12.9 1.58 16.58A16.3 16.3 0 0 0 6.55 19l1.2-1.64c-.66-.25-1.3-.57-1.9-.95.16-.12.31-.24.46-.36 3.67 1.7 7.66 1.7 11.28 0 .15.12.3.24.46.36-.6.38-1.24.7-1.9.95L17.45 19a16.3 16.3 0 0 0 4.97-2.42c.42-4.26-.72-7.96-2.92-11.24ZM8.17 14.4c-1.1 0-2-1-2-2.23s.88-2.24 2-2.24c1.13 0 2.03 1.01 2 2.24 0 1.23-.88 2.23-2 2.23Zm7.66 0c-1.1 0-2-1-2-2.23s.88-2.24 2-2.24c1.13 0 2.03 1.01 2 2.24 0 1.23-.87 2.23-2 2.23Z"/>
           </svg>
@@ -1036,8 +1035,7 @@
           </p>
 
           <div class="hero-actions">
-            <!-- IDE ÍRD A SAJÁT DISCORD MEGHÍVÓ LINKED -->
-            <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=IDE_A_CLIENT_ID" target="_blank" rel="noopener">
+                <a class="btn btn-primary invite-link" href="#" target="_blank" rel="noopener">
               <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M19.5 5.34A16.5 16.5 0 0 0 15.44 4l-.5 1.02a15.4 15.4 0 0 0-5.88 0L8.56 4A16.8 16.8 0 0 0 4.5 5.34C1.93 9.17 1.23 12.9 1.58 16.58A16.3 16.3 0 0 0 6.55 19l1.2-1.64c-.66-.25-1.3-.57-1.9-.95.16-.12.31-.24.46-.36 3.67 1.7 7.66 1.7 11.28 0 .15.12.3.24.46.36-.6.38-1.24.7-1.9.95L17.45 19a16.3 16.3 0 0 0 4.97-2.42c.42-4.26-.72-7.96-2.92-11.24ZM8.17 14.4c-1.1 0-2-1-2-2.23s.88-2.24 2-2.24c1.13 0 2.03 1.01 2 2.24 0 1.23-.88 2.23-2 2.23Zm7.66 0c-1.1 0-2-1-2-2.23s.88-2.24 2-2.24c1.13 0 2.03 1.01 2 2.24 0 1.23-.87 2.23-2 2.23Z"/>
               </svg>
@@ -1189,7 +1187,7 @@
                 <code>/stat</code>
                 <span>Napi eredmények és ranglista megjelenítése</span>
               </div>
-            </div>            </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1201,7 +1199,7 @@
           <div class="cta-content">
             <h2>Készen állsz, hogy a klánod a következő szintre lépjen?</h2>
             <p>Hívd meg a Bulldozert még ma!</p>
-            <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=IDE_A_CLIENT_ID" target="_blank" rel="noopener">
+            <a class="btn btn-primary invite-link" href="#" target="_blank" rel="noopener">
               <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M19.5 5.34A16.5 16.5 0 0 0 15.44 4l-.5 1.02a15.4 15.4 0 0 0-5.88 0L8.56 4A16.8 16.8 0 0 0 4.5 5.34C1.93 9.17 1.23 12.9 1.58 16.58A16.3 16.3 0 0 0 6.55 19l1.2-1.64c-.66-.25-1.3-.57-1.9-.95.16-.12.31-.24.46-.36 3.67 1.7 7.66 1.7 11.28 0 .15.12.3.24.46.36-.6.38-1.24.7-1.9.95L17.45 19a16.3 16.3 0 0 0 4.97-2.42c.42-4.26-.72-7.96-2.92-11.24ZM8.17 14.4c-1.1 0-2-1-2-2.23s.88-2.24 2-2.24c1.13 0 2.03 1.01 2 2.24 0 1.23-.88 2.23-2 2.23Zm7.66 0c-1.1 0-2-1-2-2.23s.88-2.24 2-2.24c1.13 0 2.03 1.01 2 2.24 0 1.23-.87 2.23-2 2.23Z"/>
               </svg>
@@ -1253,6 +1251,14 @@
   </footer>
 
   <script>
+    const INVITE_URL =
+      "https://discord.com/oauth2/authorize?client_id=1525166413453590639&permissions=2147535936&integration_type=0&scope=bot+applications.commands";
+
+    document.querySelectorAll(".invite-link").forEach((link) => {
+      link.href = INVITE_URL;
+    });
+
+
     const header = document.getElementById("siteHeader");
     const menuToggle = document.getElementById("menuToggle");
     const mainNav = document.getElementById("mainNav");
