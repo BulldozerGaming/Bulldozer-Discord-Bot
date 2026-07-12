@@ -97,7 +97,9 @@
     }
 
     .nav-wrap {
+      width: min(1180px, calc(100% - 32px));
       min-height: 78px;
+      margin: auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -111,8 +113,8 @@
     }
 
     .brand-mark {
-      width: 52px;
-      height: 58px;
+      width: 48px;
+      height: 54px;
       display: grid;
       place-items: center;
       color: var(--gold);
@@ -127,7 +129,7 @@
     .brand-text strong {
       display: block;
       color: var(--gold);
-      font-size: 1.12rem;
+      font-size: 1.08rem;
       line-height: 1;
       letter-spacing: 0.07em;
     }
@@ -136,38 +138,63 @@
       display: block;
       margin-top: 7px;
       color: #d2a63b;
-      font-size: 0.68rem;
+      font-size: 0.67rem;
       font-weight: 800;
       letter-spacing: 0.31em;
     }
 
+
     .header-actions {
       display: flex;
+      align-items: center;
       gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
     }
 
-    .top-link,
-    .btn {
+    .language-switch {
+      display: flex;
+      padding: 3px;
+      border: 1px solid rgba(255, 184, 31, 0.28);
+      border-radius: 7px;
+      background: rgba(255, 184, 31, 0.04);
+    }
+
+    .language-button {
+      min-width: 42px;
+      height: 36px;
+      border: 0;
+      border-radius: 5px;
+      color: var(--muted);
+      background: transparent;
+      font: inherit;
+      font-size: 0.75rem;
+      font-weight: 850;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .language-button:hover,
+    .language-button.active {
+      color: #090b0c;
+      background: var(--gold);
+    }
+
+    .back-link {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 9px;
       min-height: 44px;
       padding: 0 16px;
-      border: 1px solid rgba(255, 184, 31, 0.55);
-      border-radius: 7px;
       color: var(--gold);
       font-size: 0.82rem;
       font-weight: 850;
       letter-spacing: 0.04em;
       text-transform: uppercase;
+      border: 1px solid rgba(255, 184, 31, 0.55);
+      border-radius: 7px;
       transition: 0.2s ease;
     }
 
-    .top-link:hover,
-    .btn:hover {
+    .back-link:hover {
       transform: translateY(-2px);
       background: rgba(255, 184, 31, 0.08);
       box-shadow: 0 12px 26px rgba(255, 184, 31, 0.12);
@@ -536,13 +563,104 @@
         grid-template-columns: 1fr;
       }
     }
+
+    .language-content[hidden] {
+      display: none !important;
+    }
+
+    .cta-wrap {
+      padding: 0 0 88px;
+      background: #090c0e;
+    }
+
+    .cta-banner {
+      min-height: 210px;
+      border: 1px solid rgba(255, 184, 31, 0.62);
+      border-radius: 10px;
+      background:
+        linear-gradient(90deg, rgba(7,9,10,.78), rgba(7,9,10,.92), rgba(7,9,10,.78)),
+        url("assets/cta-castle.webp") center / cover no-repeat;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cta-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,184,31,.08), transparent 25%, transparent 75%, rgba(255,184,31,.08)),
+        linear-gradient(180deg, transparent, rgba(0,0,0,.18));
+    }
+
+    .cta-content {
+      padding: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-content h2 {
+      color: #fff;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      line-height: 1.2;
+      margin-bottom: 7px;
+    }
+
+    .cta-content p {
+      color: #d3d7da;
+      margin-bottom: 22px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 20px;
+      border: 1px solid #ffcb43;
+      border-radius: 6px;
+      color: #07090a;
+      background: linear-gradient(180deg, #ffc73a 0%, #e7a60b 100%);
+      box-shadow: 0 16px 35px rgba(255,184,31,.18);
+      font-weight: 850;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      transition: .2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 45px rgba(255,184,31,.28);
+      background: linear-gradient(180deg, #ffd15a 0%, #efae11 100%);
+    }
+
+    @media (max-width: 700px) {
+      .brand-text strong { font-size: .94rem; }
+      .brand-text span { font-size: .58rem; letter-spacing: .24em; }
+      .brand-mark { width: 42px; height: 48px; }
+      .back-link { padding: 0 11px; font-size: .70rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .cta-wrap { padding-bottom: 56px; }
+    }
+
+    @media (max-width: 540px) {
+      .back-link span:last-child { display: none; }
+      .back-link { width: 44px; padding: 0; justify-content: center; }
+      .language-button { min-width: 37px; }
+    }
+
   </style>
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a href="index.html" class="brand" aria-label="Bulldozer Discord Bot főoldal">
+<header class="site-header">
+    <div class="nav-wrap">
+      <a href="index.html" class="brand" id="brandLink" aria-label="Bulldozer Discord Bot főoldal">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 64 72" fill="none">
             <path d="M32 3 57 11v21c0 18-10 29-25 37C17 61 7 50 7 32V11L32 3Z" stroke="currentColor" stroke-width="2.8"/>
@@ -557,9 +675,15 @@
       </a>
 
       <div class="header-actions">
-        <a class="top-link" href="index.html">← Főoldal</a>
-        <a class="top-link" href="privacy.html">Adatvédelem</a>
-        <a class="top-link" href="terms.html">Feltételek</a>
+        <div class="language-switch" aria-label="Nyelvválasztás">
+          <button class="language-button" type="button" data-language="hu">HU</button>
+          <button class="language-button" type="button" data-language="en">EN</button>
+        </div>
+
+        <a class="back-link" href="index.html" id="backLink">
+          <span aria-hidden="true">←</span>
+          <span id="backText">Vissza a főoldalra</span>
+        </a>
       </div>
     </div>
   </header>
@@ -567,16 +691,17 @@
   <main>
     <section class="hero">
       <div class="container hero-inner">
-        <span class="kicker">Dokumentáció</span>
-        <h1>Bulldozer útmutató</h1>
-        <p>
+        <span class="kicker" id="heroKicker">Dokumentáció</span>
+        <h1 id="heroTitle">Bulldozer útmutató</h1>
+        <p id="heroDescription">
           Részletes használati útmutató új és haladó felhasználóknak: beállítás,
           statisztikák, grafikonok, térképek, foglalásfigyelés és admin funkciók.
         </p>
       </div>
     </section>
 
-    <div class="container layout">
+    <div class="container layout language-content" data-lang-content="hu">
+
       <aside class="toc" aria-label="Tartalomjegyzék">
         <strong>Tartalom</strong>
         <nav>
@@ -914,8 +1039,202 @@
           </p>
         </section>
       </div>
+
     </div>
+
+    <div class="container layout language-content" data-lang-content="en" hidden>
+      <aside class="toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <nav>
+          <a href="#en-start">Quick start</a>
+          <a href="#en-permissions">Permissions</a>
+          <a href="#en-world">World setup</a>
+          <a href="#en-stats">Statistics</a>
+          <a href="#en-daily">One-day records</a>
+          <a href="#en-charts">Chart types</a>
+          <a href="#en-map">Map</a>
+          <a href="#en-conquest">Conquest tracking</a>
+          <a href="#en-alliances">Alliances</a>
+          <a href="#en-help">Help and errors</a>
+        </nav>
+      </aside>
+
+      <div class="guide-content">
+        <section class="section-card" id="en-start">
+          <span class="badge badge-public">Everyone</span>
+          <span class="badge badge-admin">Includes admin features</span>
+          <h2>Quick start</h2>
+          <p>
+            Bulldozer is a utility bot created for Tribal Wars Discord servers. It can manage world settings,
+            generate maps and statistics, display rankings, and send automatic village conquest notifications.
+          </p>
+          <ol>
+            <li>Invite the bot to your Discord server.</li>
+            <li>Ask a server administrator to configure the world with <code>/vilag beallit</code>.</li>
+            <li>Try the public commands: <code>/stat</code>, <code>/terkep</code>, and <code>/segitseg</code>.</li>
+            <li>To enable live conquest tracking, use <code>/foglalas hozzaad</code> as an administrator.</li>
+          </ol>
+          <div class="warning">
+            Most statistics and map commands require a default Tribal Wars world to be configured first.
+          </div>
+        </section>
+
+        <section class="section-card" id="en-permissions">
+          <h2>Permissions</h2>
+          <p>The bot has public commands and server-administrator commands.</p>
+          <div class="grid-2">
+            <div class="mini-card">
+              <strong>Available to everyone</strong>
+              <span><code>/stat</code>, <code>/terkep</code>, <code>/segitseg</code>, <code>/vilag info</code></span>
+            </div>
+            <div class="mini-card">
+              <strong>Server administrators only</strong>
+              <span><code>/vilag beallit</code>, <code>/vilag torol</code>, <code>/foglalas</code>, <code>/szovetsegek</code></span>
+            </div>
+          </div>
+          <p>
+            Administrator commands modify server-wide settings, create automatic channel notifications,
+            or manage alliance markings shown on maps.
+          </p>
+        </section>
+
+        <section class="section-card" id="en-world">
+          <span class="badge badge-admin">Admin</span>
+          <h2>World setup</h2>
+          <p>The selected world determines which Tribal Wars world data the bot uses. It only needs to be configured once per Discord server.</p>
+          <div class="command-table">
+            <div class="command-row"><code>/vilag beallit</code><span>Sets the server's default world, such as <code>hu100</code>.</span></div>
+            <div class="command-row"><code>/vilag info</code><span>Displays the currently configured world. Everyone can use this command.</span></div>
+            <div class="command-row"><code>/vilag torol</code><span>Removes the server's world setting.</span></div>
+          </div>
+          <div class="example"><code>/vilag beallit vilag:hu100</code></div>
+        </section>
+
+        <section class="section-card" id="en-stats">
+          <span class="badge badge-public">Everyone</span>
+          <h2>Statistics and rankings</h2>
+          <p>The <code>/stat</code> command group creates rankings and charts. Most commands support a result limit and a chart style.</p>
+          <div class="command-table">
+            <div class="command-row"><code>/stat klanok</code><span>Ranking of the strongest clans in the world.</span></div>
+            <div class="command-row"><code>/stat jatekosok</code><span>Ranking of the strongest players.</span></div>
+            <div class="command-row"><code>/stat dominancia</code><span>Shows which clans control the most villages.</span></div>
+            <div class="command-row"><code>/stat kontinens-klanok</code><span>Top clans on a selected continent, such as <code>K45</code>.</span></div>
+            <div class="command-row"><code>/stat kontinens-jatekosok</code><span>Top players on a selected continent, optionally filtered by clan.</span></div>
+            <div class="command-row"><code>/stat legyozott-klan</code><span>Clan ranking by defeated opponents.</span></div>
+            <div class="command-row"><code>/stat legyozott-jatekos</code><span>Player ranking by defeated opponents.</span></div>
+            <div class="command-row"><code>/stat eredmenyek</code><span>Conquest milestones and records.</span></div>
+            <div class="command-row"><code>/stat haboruk</code><span>Active clan conflicts based on recent conquests.</span></div>
+          </div>
+        </section>
+
+        <section class="section-card" id="en-daily">
+          <span class="badge badge-public">Everyone</span>
+          <h2>/stat egy-nap-alatt</h2>
+          <p>
+            This command displays daily performance or each player's best daily record. Depending on the selected category,
+            the bot calculates either a daily change or a personal one-day record.
+          </p>
+          <h3>Categories</h3>
+          <div class="metric-list">
+            <div class="metric"><b>Points</b><small>Daily point increase. Must be used on its own.</small></div>
+            <div class="metric"><b>Villages</b><small>Daily village increase. Must be used on its own.</small></div>
+            <div class="metric"><b>Farming</b><small>Best daily farmed resources.</small></div>
+            <div class="metric"><b>Scavenging</b><small>Best daily scavenged resources.</small></div>
+            <div class="metric"><b>Looted villages</b><small>Number of villages looted.</small></div>
+            <div class="metric"><b>Conquests</b><small>Number of villages conquered.</small></div>
+            <div class="metric"><b>Offensive OD</b><small>Units defeated as attacker.</small></div>
+            <div class="metric"><b>Defensive/support/total OD</b><small>Additional OD record categories.</small></div>
+          </div>
+          <div class="example"><code>/stat egy-nap-alatt kategoria:Farm plusz-kategoria:Gyűjti klan:Összes top:25</code></div>
+          <div class="warning">
+            <code>Pont</code> and <code>Falu</code> are daily-change categories and cannot be combined with other categories.
+          </div>
+        </section>
+
+        <section class="section-card" id="en-charts">
+          <h2>Chart types</h2>
+          <p>Use the <code>grafikon</code> option to choose how results are displayed.</p>
+          <div class="grid-2">
+            <div class="mini-card"><strong>Simplified chart</strong><span>Clean columns with names directly below them.</span></div>
+            <div class="mini-card"><strong>Column chart</strong><span>A more detailed chart that also supports multiple categories.</span></div>
+            <div class="mini-card"><strong>Horizontal bar chart</strong><span>Ideal for rankings and longer names.</span></div>
+            <div class="mini-card"><strong>Pie chart</strong><span>Useful for proportions and smaller result sets.</span></div>
+          </div>
+        </section>
+
+        <section class="section-card" id="en-map">
+          <span class="badge badge-public">Everyone</span>
+          <h2>/terkep</h2>
+          <p>The map command generates a high-resolution Tribal Wars map for the whole world or selected continents.</p>
+          <ul>
+            <li><code>kontinensek</code> — one or more continents, such as <code>K45, K55</code>.</li>
+            <li><code>top_klanok</code> — number of strongest clans to highlight.</li>
+            <li>Optional clan, player, barbarian-village, label and colour settings.</li>
+          </ul>
+        </section>
+
+        <section class="section-card" id="en-conquest">
+          <span class="badge badge-admin">Admin</span>
+          <h2>Conquest tracking</h2>
+          <p>
+            The <code>/foglalas</code> command group configures automatic conquest notifications for a Discord channel.
+            Notifications can distinguish new conquests, losses and internal clan transfers.
+          </p>
+          <div class="command-table">
+            <div class="command-row"><code>/foglalas hozzaad</code><span>Adds and configures a conquest tracker.</span></div>
+            <div class="command-row"><code>/foglalas lista</code><span>Lists the server's configured trackers.</span></div>
+            <div class="command-row"><code>/foglalas torol</code><span>Removes a selected tracker.</span></div>
+            <div class="command-row"><code>/foglalas teszt</code><span>Sends a test notification.</span></div>
+          </div>
+        </section>
+
+        <section class="section-card" id="en-alliances">
+          <span class="badge badge-admin">Admin</span>
+          <h2>Alliances</h2>
+          <p>
+            Alliance settings can group clans and apply consistent colours or markings to generated maps.
+            Multiple clan tags can be entered as a comma-separated list.
+          </p>
+          <div class="example"><code>[BALL], [ABC]</code></div>
+        </section>
+
+        <section class="section-card" id="en-help">
+          <h2>Help and common errors</h2>
+          <h3>The server world is not configured</h3>
+          <p>Ask an administrator to run <code>/vilag beallit</code>.</p>
+          <h3>No autocomplete result appears</h3>
+          <p>Type part of the player, clan, continent or category name and wait for the suggestions.</p>
+          <h3>A multi-category daily statistic does not run</h3>
+          <p>
+            <code>Pont</code> and <code>Falu</code> must be used alone. For multiple categories, select record categories such as
+            <code>Farm</code>, <code>Gyűjti</code>, <code>Fosztott falu</code>, or <code>Hódítás</code>.
+          </p>
+        </section>
+      </div>
+    </div>
+
   </main>
+
+
+  <section class="cta-wrap">
+    <div class="container">
+      <div class="cta-banner">
+        <div class="cta-content">
+          <h2 id="ctaTitle">Készen állsz, hogy a klánod a következő szintre lépjen?</h2>
+          <p id="ctaText">Hívd meg a Bulldozert még ma!</p>
+          <a class="btn-primary"
+             href="https://discord.com/oauth2/authorize?client_id=1525166413453590639&permissions=2147535936&integration_type=0&scope=bot+applications.commands"
+             target="_blank"
+             rel="noopener">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19.5 5.34A16.5 16.5 0 0 0 15.44 4l-.5 1.02a15.4 15.4 0 0 0-5.88 0L8.56 4A16.8 16.8 0 0 0 4.5 5.34C1.93 9.17 1.23 12.9 1.58 16.58A16.3 16.3 0 0 0 6.55 19l1.2-1.64c-.66-.25-1.3-.57-1.9-.95.16-.12.31-.24.46-.36 3.67 1.7 7.66 1.7 11.28 0 .15.12.3.24.46.36-.6.38-1.24.7-1.9.95L17.45 19a16.3 16.3 0 0 0 4.97-2.42c.42-4.26-.72-7.96-2.92-11.24Z"/>
+            </svg>
+            <span id="ctaButton">Meghívás most</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer class="site-footer">
     <div class="container">
@@ -933,29 +1252,130 @@
               <span>DISCORD BOT</span>
             </span>
           </a>
-          <p>A legjobb társad a Klánháború világában. Építs, harcolj, győzz!</p>
+          <p id="footerTagline">A legjobb társad a Klánháború világában. Építs, harcolj, győzz!</p>
         </div>
 
         <div class="footer-col">
-          <h4>Dokumentáció</h4>
-          <a href="guide.html">Útmutató</a>
+          <h4 id="footerDocsTitle">Dokumentáció</h4>
+          <a href="guide.html" id="footerGuide">Útmutató</a>
         </div>
 
         <div class="footer-col">
-          <h4>Jogi</h4>
-          <a href="privacy.html">Adatvédelmi irányelvek</a>
-          <a href="terms.html">Szolgáltatási feltételek</a>
+          <h4 id="footerLegalTitle">Jogi</h4>
+          <a href="privacy.html" id="footerPrivacy">Adatvédelmi irányelvek</a>
+          <a href="terms.html" id="footerTerms">Szolgáltatási feltételek</a>
         </div>
       </div>
 
       <div class="footer-bottom">
-        © <span id="year"></span> Bulldozer Discord Bot. Minden jog fenntartva.
+        © <span id="year"></span> Bulldozer Discord Bot. <span id="footerRights">Minden jog fenntartva.</span>
       </div>
     </div>
   </footer>
 
-  <script>
+<script>
+    const translations = {
+      hu: {
+        htmlLang: "hu",
+        documentTitle: "Útmutató | Bulldozer Discord Bot",
+        metaDescription: "Részletes útmutató a Bulldozer Discord Bot használatához.",
+        brandAria: "Bulldozer Discord Bot főoldal",
+        back: "Vissza a főoldalra",
+        heroKicker: "Dokumentáció",
+        heroTitle: "Bulldozer útmutató",
+        heroDescription: "Részletes használati útmutató új és haladó felhasználóknak: beállítás, statisztikák, grafikonok, térképek, foglalásfigyelés és admin funkciók.",
+        ctaTitle: "Készen állsz, hogy a klánod a következő szintre lépjen?",
+        ctaText: "Hívd meg a Bulldozert még ma!",
+        ctaButton: "Meghívás most",
+        footerTagline: "A legjobb társad a Klánháború világában. Építs, harcolj, győzz!",
+        footerDocsTitle: "Dokumentáció",
+        footerGuide: "Útmutató",
+        footerLegalTitle: "Jogi",
+        footerPrivacy: "Adatvédelmi irányelvek",
+        footerTerms: "Szolgáltatási feltételek",
+        footerRights: "Minden jog fenntartva."
+      },
+      en: {
+        htmlLang: "en",
+        documentTitle: "Guide | Bulldozer Discord Bot",
+        metaDescription: "Detailed guide to using the Bulldozer Discord Bot.",
+        brandAria: "Bulldozer Discord Bot home page",
+        back: "Back to home",
+        heroKicker: "Documentation",
+        heroTitle: "Bulldozer guide",
+        heroDescription: "A detailed guide for new and advanced users covering setup, statistics, charts, maps, conquest tracking and administrator features.",
+        ctaTitle: "Ready to take your clan to the next level?",
+        ctaText: "Invite Bulldozer today!",
+        ctaButton: "Invite now",
+        footerTagline: "Your best companion in the world of Tribal Wars. Build, fight, win!",
+        footerDocsTitle: "Documentation",
+        footerGuide: "Guide",
+        footerLegalTitle: "Legal",
+        footerPrivacy: "Privacy Policy",
+        footerTerms: "Terms of Service",
+        footerRights: "All rights reserved."
+      }
+    };
+
+    function detectLanguage() {
+      const saved = localStorage.getItem("bulldozer-language");
+      if (saved === "hu" || saved === "en") return saved;
+
+      const languages = navigator.languages?.length
+        ? navigator.languages
+        : [navigator.language || "en"];
+
+      return languages.some((language) =>
+        String(language).toLowerCase().startsWith("hu")
+      ) ? "hu" : "en";
+    }
+
+    function applyLanguage(language, savePreference = false) {
+      const selected = translations[language] ? language : "en";
+      const text = translations[selected];
+
+      document.documentElement.lang = text.htmlLang;
+      document.title = text.documentTitle;
+      document.querySelector('meta[name="description"]').content = text.metaDescription;
+      document.getElementById("brandLink").setAttribute("aria-label", text.brandAria);
+      document.getElementById("backText").textContent = text.back;
+      document.getElementById("heroKicker").textContent = text.heroKicker;
+      document.getElementById("heroTitle").textContent = text.heroTitle;
+      document.getElementById("heroDescription").textContent = text.heroDescription;
+      document.getElementById("ctaTitle").textContent = text.ctaTitle;
+      document.getElementById("ctaText").textContent = text.ctaText;
+      document.getElementById("ctaButton").textContent = text.ctaButton;
+      document.getElementById("footerTagline").textContent = text.footerTagline;
+      document.getElementById("footerDocsTitle").textContent = text.footerDocsTitle;
+      document.getElementById("footerGuide").textContent = text.footerGuide;
+      document.getElementById("footerLegalTitle").textContent = text.footerLegalTitle;
+      document.getElementById("footerPrivacy").textContent = text.footerPrivacy;
+      document.getElementById("footerTerms").textContent = text.footerTerms;
+      document.getElementById("footerRights").textContent = text.footerRights;
+
+      document.querySelectorAll("[data-lang-content]").forEach((content) => {
+        content.hidden = content.dataset.langContent !== selected;
+      });
+
+      document.querySelectorAll(".language-button").forEach((button) => {
+        const active = button.dataset.language === selected;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+
+      if (savePreference) {
+        localStorage.setItem("bulldozer-language", selected);
+      }
+    }
+
+    document.querySelectorAll(".language-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        applyLanguage(button.dataset.language, true);
+      });
+    });
+
     document.getElementById("year").textContent = new Date().getFullYear();
+    applyLanguage(detectLanguage());
   </script>
 </body>
 </html>
