@@ -713,6 +713,7 @@
           <a href="#charts">Grafikon típusok</a>
           <a href="#map">Térkép</a>
           <a href="#conquest">Foglalásfigyelés</a>
+          <a href="#summary">Napi összefoglaló</a>
           <a href="#alliances">Szövetségek</a>
           <a href="#help">Segítség és hibák</a>
         </nav>
@@ -754,7 +755,7 @@
             </div>
             <div class="mini-card">
               <strong>Csak szerver adminisztrátor</strong>
-              <span><code>/vilag beallit</code>, <code>/vilag torol</code>, <code>/foglalas</code>, <code>/szovetsegek</code></span>
+              <span><code>/vilag beallit</code>, <code>/vilag torol</code>, <code>/foglalas</code>, <code>/osszefoglalo</code>, <code>/szovetsegek</code></span>
             </div>
           </div>
 
@@ -977,6 +978,75 @@
           <div class="example"><code>/foglalas hozzaad csatorna:#foglalasok klanok:[BALL], [ABC] kontinens:K45</code></div>
         </section>
 
+        <section class="section-card" id="summary">
+          <span class="badge badge-admin">Admin</span>
+          <h2>/osszefoglalo &ndash; napi összefoglalók</h2>
+          <p>
+            Az <code>/osszefoglalo</code> parancscsoport automatikus, táblázatos napi jelentést küld a kiválasztott Discord
+            csatornába. Minden összefoglaló a beállított világból dolgozik, és <strong>hajnali 2:00-kor</strong> készül az előző,
+            már lezárt nap adataiból. A beállításokat kizárólag szerver-adminisztrátorok hozhatják létre és módosíthatják.
+          </p>
+
+          <div class="command-table">
+            <div class="command-row">
+              <code>/osszefoglalo hozzaad</code>
+              <span>Új automatikus összefoglalót állít be egy csatornára.</span>
+            </div>
+            <div class="command-row">
+              <code>/osszefoglalo modosit</code>
+              <span>Módosítja a kiválasztott összefoglaló csatornáját, aktív állapotát, illetve taglista esetén a figyelt klánt.</span>
+            </div>
+            <div class="command-row">
+              <code>/osszefoglalo torles</code>
+              <span>Végleg eltávolítja a kiválasztott automatikus összefoglalót.</span>
+            </div>
+            <div class="command-row">
+              <code>/osszefoglalo teszt</code>
+              <span>Minta-táblázatokat küld a megadott csatornába; a teszt nem várja meg a hajnali küldést.</span>
+            </div>
+          </div>
+
+          <h3>Összefoglaló típusok</h3>
+          <div class="grid-2">
+            <div class="mini-card">
+              <strong>Klán-napi összefoglaló</strong>
+              <span>A világ aktuális top 25 klánját rangsorolja. Két képként érkezik: TOP 1&ndash;12, majd TOP 13&ndash;25. Ehhez nem kell klánt választani.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Taglista-napi összefoglaló</strong>
+              <span>Egy kiválasztott klán jelenlegi tagjait mutatja rangsor szerint. A tagok több, áttekinthető oldalon jelennek meg.</span>
+            </div>
+          </div>
+
+          <h3>Mit tartalmaz a táblázat?</h3>
+          <p>
+            A táblázatok a napi változásokat és a pillanatnyi összesített értékeket együtt jelenítik meg. A fő oszlopok:
+            <code>Foglalás</code>, <code>Vesztés</code>, <code>Nettó</code>, <code>Falvak</code>, <code>Barbár</code>,
+            <code>Pont</code>, <code>Farm</code>, <code>Gyűjti</code>, <code>Fosztott falu</code>, valamint a legyőzött
+            ellenfelek <code>Támadóként</code>, <code>Védekezőként</code>, <code>Támogatóként</code> és <code>Összesen</code> értékei.
+          </p>
+          <ul>
+            <li>A <code>Foglalás</code>, <code>Vesztés</code>, <code>Nettó</code> és a statisztikai oszlopok a lezárt napi változást mutatják.</li>
+            <li>A <code>Falvak</code>, <code>Pont</code> és az OD-oszlopok alatt az aktuális összérték is látható.</li>
+            <li>A <code>Barbár</code> az adott játékos vagy klán eddig rögzített összes barbárfalu-foglalását jelzi.</li>
+            <li>A <code>Farm</code>, <code>Gyűjti</code> és <code>Fosztott falu</code> vendég-ranglistaadatból készül; klánnál a jelenlegi tagok eredményeinek összege szerepel.</li>
+          </ul>
+
+          <h3>Automatikus leállítás és újraindítás</h3>
+          <p>
+            A bot nem küld végtelenül üres vagy érvénytelen jelentéseket. Leállítja az összefoglalót, ha a világ már nem aktív;
+            taglista esetén akkor is, ha a figyelt klán megszűnt. Emellett a bot figyeli a táblázat tényleges adatait: egy változatlan
+            nap még elküldhető, de két egymást követő, teljesen változatlan napi adat után az összefoglaló automatikusan inaktív lesz.
+          </p>
+          <div class="warning">
+            Az automatikus leállítás nem törli a beállítást. Az <code>/osszefoglalo modosit</code> parancsban az <code>aktiv:Igen</code>
+            visszakapcsolja az összefoglalót, és új ellenőrzési ciklust indít.
+          </div>
+
+          <div class="example"><code>/osszefoglalo hozzaad tipus:Klán-napi összefoglaló csatorna:#napi-osszefoglalo</code></div>
+          <div class="example"><code>/osszefoglalo hozzaad tipus:Taglista-napi összefoglaló csatorna:#ball-napi klan:[Ball]</code></div>
+        </section>
+
         <section class="section-card" id="alliances">
           <span class="badge badge-admin">Admin</span>
           <h2>Szövetségek</h2>
@@ -1054,6 +1124,7 @@
           <a href="#en-charts">Chart types</a>
           <a href="#en-map">Map</a>
           <a href="#en-conquest">Conquest tracking</a>
+          <a href="#en-summary">Daily summaries</a>
           <a href="#en-alliances">Alliances</a>
           <a href="#en-help">Help and errors</a>
         </nav>
@@ -1089,7 +1160,7 @@
             </div>
             <div class="mini-card">
               <strong>Server administrators only</strong>
-              <span><code>/vilag beallit</code>, <code>/vilag torol</code>, <code>/foglalas</code>, <code>/szovetsegek</code></span>
+              <span><code>/vilag beallit</code>, <code>/vilag torol</code>, <code>/foglalas</code>, <code>/osszefoglalo</code>, <code>/szovetsegek</code></span>
             </div>
           </div>
           <p>
@@ -1185,6 +1256,46 @@
             <div class="command-row"><code>/foglalas lista</code><span>Lists the server's configured trackers.</span></div>
             <div class="command-row"><code>/foglalas torol</code><span>Removes a selected tracker.</span></div>
             <div class="command-row"><code>/foglalas teszt</code><span>Sends a test notification.</span></div>
+          </div>
+        </section>
+
+        <section class="section-card" id="en-summary">
+          <span class="badge badge-admin">Admin</span>
+          <h2>/osszefoglalo &ndash; daily summaries</h2>
+          <p>
+            The <code>/osszefoglalo</code> command group sends an automatic, table-based daily report to the selected Discord channel.
+            It uses the configured world and is created at <strong>02:00</strong> from the previous closed day's data. Only server
+            administrators can create or change these configurations.
+          </p>
+          <div class="command-table">
+            <div class="command-row"><code>/osszefoglalo hozzaad</code><span>Creates a new automatic summary for a channel.</span></div>
+            <div class="command-row"><code>/osszefoglalo modosit</code><span>Changes the channel, active state, and, for member-list summaries, the tracked clan.</span></div>
+            <div class="command-row"><code>/osszefoglalo torles</code><span>Permanently removes a selected summary configuration.</span></div>
+            <div class="command-row"><code>/osszefoglalo teszt</code><span>Sends sample tables immediately to the chosen channel.</span></div>
+          </div>
+
+          <h3>Summary types</h3>
+          <div class="grid-2">
+            <div class="mini-card"><strong>Clan daily summary</strong><span>Shows the world's current top 25 clans in rank order. It is sent as two images: TOP 1&ndash;12 and TOP 13&ndash;25. No clan selection is needed.</span></div>
+            <div class="mini-card"><strong>Member-list daily summary</strong><span>Shows the current members of one selected clan in rank order, split into readable pages when necessary.</span></div>
+          </div>
+
+          <h3>Table contents</h3>
+          <p>
+            Each table combines daily changes with current totals: conquests, losses, net villages, villages, barbarian conquests,
+            points, farming, scavenging, looted villages, and defeated opponents as attacker, defender, supporter and total.
+            Farming, scavenging and looted-village values use guest ranking data; clan values are the sum of current members.
+          </p>
+
+          <h3>Automatic stopping and resuming</h3>
+          <p>
+            The bot automatically disables a summary if its world is no longer active. Member-list summaries also stop if their tracked
+            clan no longer exists. It also checks the real table data: one unchanged day may still be sent, while two consecutive
+            completely unchanged daily results automatically disable the summary.
+          </p>
+          <div class="warning">
+            Automatic stopping does not delete the configuration. Use <code>/osszefoglalo modosit</code> with <code>aktiv:Igen</code>
+            to enable it again and start a new checking cycle.
           </div>
         </section>
 
