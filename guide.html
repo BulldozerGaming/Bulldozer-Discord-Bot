@@ -716,7 +716,6 @@
           <a href="#summary">Napi összefoglaló</a>
           <a href="#alliances">Szövetségek</a>
           <a href="#status">Bot állapot</a>
-          <a href="#operator">Bot üzemeltetőknek</a>
           <a href="#help">Segítség és hibák</a>
         </nav>
       </aside>
@@ -1096,7 +1095,7 @@
           <ul>
             <li>a szerver tulajdonosa,</li>
             <li>Discord <strong>Szerver adminisztrátor</strong>,</li>
-            <li>vagy <strong>Szerver kezelése</strong> jogosultsággal rendelkező tag (fejlesztői szerepkör).</li>
+            <li>vagy <strong>Szerver kezelése</strong> jogosultsággal rendelkező tag.</li>
           </ul>
 
           <h3>Mit mutat a válasz?</h3>
@@ -1106,57 +1105,7 @@
             <li>a szerveren beállított Klánháború-világ (vagy ha még nincs beállítva).</li>
           </ul>
 
-          <div class="warning">
-            A parancs futtatásakor a bot a háttérben frissíti a szervernaplót és ellenőrzi a blacklistet is &mdash;
-            ehhez nem kell éjfélig várni. Ezeknek az eredménye nem jelenik meg a Discord-válaszban, csak a bot
-            üzemeltetőjének naplófájljaiban.
-          </div>
-
           <div class="example"><code>/status</code></div>
-        </section>
-
-        <section class="section-card" id="operator">
-          <span class="badge badge-admin">Bot üzemeltető</span>
-          <h2>Szervernapló és blacklist</h2>
-          <p>
-            Ezek a funkciók a botot futtató gépen működnek. Discord szerver adminok nem szerkeszthetik közvetlenül,
-            de a <code>/status</code> parancs azonnali ellenőrzést indíthat.
-          </p>
-
-          <h3>Napi szervernapló</h3>
-          <p>
-            Minden budapesti éjfélkor a bot frissíti a <code>data/szervernaplo.txt</code> fájlt. Itt látható az összes
-            Discord-szerver, amelyen a bot jelen van v volt korábban: szervernév, szerverazonosító, világ, első és utolsó
-            ellenőrzés, valamint eltávolítás időpontja.
-          </p>
-          <ul>
-            <li>Ha valaki tegnap vette fel a botot, az csak a következő napi naplóban jelenik meg.</li>
-            <li>Az <strong>Új</strong>, <strong>Visszakerült</strong> és <strong>Eltávolított</strong> számlálók a napi változást mutatják.</li>
-          </ul>
-
-          <h3>Blacklist</h3>
-          <p>
-            A tiltott szerverek listája a <code>data/szerver_blacklist.txt</code> fájlban van. Soronként egy szerver:
-          </p>
-          <div class="example"><code>123456789012345678  Nem kívánt szerver neve</code></div>
-          <ul>
-            <li>Az <strong>azonosító</strong> kötelező &mdash; ezt a szervernaplóból másold.</li>
-            <li>A <strong>név</strong> csak megjegyzés; segít később azonosítani a sort.</li>
-            <li><code>#</code> jellel kezdődő sor komment; törölt vagy kikommentezett sor = nincs tiltás.</li>
-            <li>Tetszőleges számú szerver szerepelhet a fájlban.</li>
-          </ul>
-
-          <h3>Mikor lép ki a bot tiltott szerverről?</h3>
-          <ul>
-            <li><strong>Éjfélkor</strong> &mdash; a napi szervernapló frissítésekor automatikusan.</li>
-            <li><strong>Azonnal</strong> &mdash; ha tiltott szerver újra meghívja a botot, másodperceken belül kilép.</li>
-            <li><strong>Kézzel</strong> &mdash; ha egy szerver admin futtatja a <code>/status</code> parancsot.</li>
-          </ul>
-
-          <div class="warning">
-            A blacklist fájl módosításához nincs szükség bot újraindításra. A bot induláskor létrehozza a sablonfájlt,
-            ha még nem létezik.
-          </div>
         </section>
 
         <section class="section-card" id="help">
@@ -1169,8 +1118,8 @@
 
           <h3>Nem jelenik meg egy admin parancs</h3>
           <p>
-            Az admin parancsok csak Discord szerver adminisztrátoroknak láthatók. Ha most lett módosítva a jogosultság,
-            szükség lehet bot újraindításra és slash command sync-re.
+            Az admin parancsok csak megfelelő Discord-jogosultsággal láthatók. Ha most lett hozzáadva egy új parancs,
+            a Discord néha késve jeleníti meg &mdash; várj néhány percet, vagy indítsd újra a Discord klienst.
           </p>
 
           <h3>Nem működik stat vagy térkép</h3>
@@ -1210,7 +1159,6 @@
           <a href="#en-summary">Daily summaries</a>
           <a href="#en-alliances">Alliances</a>
           <a href="#en-status">Bot status</a>
-          <a href="#en-operator">For bot operators</a>
           <a href="#en-help">Help and errors</a>
         </nav>
       </aside>
@@ -1418,48 +1366,7 @@
             <li>bot online state and latency,</li>
             <li>the configured Tribal Wars world, if any.</li>
           </ul>
-          <div class="warning">
-            Running this command also refreshes the server audit log and checks the blacklist in the background &mdash;
-            you do not have to wait until midnight. Those results are not shown in Discord; they are written to the
-            operator log files only.
-          </div>
           <div class="example"><code>/status</code></div>
-        </section>
-
-        <section class="section-card" id="en-operator">
-          <span class="badge badge-admin">Bot operator</span>
-          <h2>Server audit log and blacklist</h2>
-          <p>
-            These features run on the machine that hosts the bot. Discord server admins cannot edit them directly,
-            but <code>/status</code> can trigger an immediate check.
-          </p>
-          <h3>Daily server audit</h3>
-          <p>
-            Every day at midnight (Budapest time) the bot refreshes <code>data/szervernaplo.txt</code>. It lists every
-            Discord server the bot is on or was on previously: name, ID, world, first/last check and removal time.
-          </p>
-          <ul>
-            <li>If someone added the bot yesterday, it appears in the next daily log.</li>
-            <li>The <strong>New</strong>, <strong>Restored</strong> and <strong>Removed</strong> counters show daily changes.</li>
-          </ul>
-          <h3>Blacklist</h3>
-          <p>Blocked servers are listed in <code>data/szerver_blacklist.txt</code>, one per line:</p>
-          <div class="example"><code>123456789012345678  Unwanted server name</code></div>
-          <ul>
-            <li>The <strong>ID</strong> is required &mdash; copy it from the server audit log.</li>
-            <li>The <strong>name</strong> is optional and serves as a note.</li>
-            <li>Lines starting with <code>#</code> are comments; delete or comment out a line to unblock.</li>
-            <li>Any number of servers can be listed.</li>
-          </ul>
-          <h3>When does the bot leave a blocked server?</h3>
-          <ul>
-            <li><strong>At midnight</strong> &mdash; during the daily audit refresh.</li>
-            <li><strong>Immediately</strong> &mdash; if a blocked server re-invites the bot.</li>
-            <li><strong>Manually</strong> &mdash; when a server admin runs <code>/status</code>.</li>
-          </ul>
-          <div class="warning">
-            No bot restart is required after editing the blacklist file. The bot creates the template file on startup if it does not exist yet.
-          </div>
         </section>
 
         <section class="section-card" id="en-help">
