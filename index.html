@@ -196,6 +196,41 @@
       letter-spacing: 0.31em;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 12px;
+    }
+
+    .language-switch {
+      display: flex;
+      padding: 3px;
+      border: 1px solid rgba(255, 184, 31, 0.28);
+      border-radius: 7px;
+      background: rgba(255, 184, 31, 0.04);
+    }
+
+    .language-button {
+      min-width: 42px;
+      height: 36px;
+      border: 0;
+      border-radius: 5px;
+      color: var(--muted);
+      background: transparent;
+      font: inherit;
+      font-size: 0.75rem;
+      font-weight: 850;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .language-button:hover,
+    .language-button.active {
+      color: #090b0c;
+      background: var(--gold);
+    }
+
     .main-nav {
       display: flex;
       align-items: center;
@@ -812,6 +847,10 @@
         place-items: center;
       }
 
+      .header-actions {
+        margin-left: auto;
+      }
+
       .main-nav {
         position: fixed;
         top: 78px;
@@ -879,6 +918,10 @@
     @media (max-width: 640px) {
       .container {
         width: min(var(--max-width), calc(100% - 24px));
+      }
+
+      .language-button {
+        min-width: 37px;
       }
 
       .brand-text strong {
@@ -976,7 +1019,7 @@
 <body>
   <header class="site-header" id="siteHeader">
     <div class="container nav-wrap">
-      <a href="#home" class="brand" aria-label="Bulldozer Discord Bot kezdőlap">
+      <a href="#home" class="brand" id="brandLink" aria-label="Bulldozer Discord Bot kezdőlap">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 64 72" fill="none">
             <path d="M32 3 57 11v21c0 18-10 29-25 37C17 61 7 50 7 32V11L32 3Z" stroke="currentColor" stroke-width="2.8"/>
@@ -990,25 +1033,32 @@
         </span>
       </a>
 
-      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mainNav">
-        <span class="sr-only">Menü megnyitása</span>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
-
       <nav class="main-nav" id="mainNav" aria-label="Fő navigáció">
-        <a class="nav-link active" href="#home">Főoldal</a>
-        <a class="nav-link" href="#features">Funkciók</a>
-        <a class="nav-link" href="#docs">Dokumentáció</a>
+        <a class="nav-link active" href="#home" id="navHome">Főoldal</a>
+        <a class="nav-link" href="#features" id="navFeatures">Funkciók</a>
+        <a class="nav-link" href="#docs" id="navDocs">Dokumentáció</a>
 
-        <a class="nav-cta invite-link" href="#" target="_blank" rel="noopener">
+        <a class="nav-cta invite-link" href="#" target="_blank" rel="noopener" id="navInvite">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M19.5 5.34A16.5 16.5 0 0 0 15.44 4l-.5 1.02a15.4 15.4 0 0 0-5.88 0L8.56 4A16.8 16.8 0 0 0 4.5 5.34C1.93 9.17 1.23 12.9 1.58 16.58A16.3 16.3 0 0 0 6.55 19l1.2-1.64c-.66-.25-1.3-.57-1.9-.95.16-.12.31-.24.46-.36 3.67 1.7 7.66 1.7 11.28 0 .15.12.3.24.46.36-.6.38-1.24.7-1.9.95L17.45 19a16.3 16.3 0 0 0 4.97-2.42c.42-4.26-.72-7.96-2.92-11.24ZM8.17 14.4c-1.1 0-2-1-2-2.23s.88-2.24 2-2.24c1.13 0 2.03 1.01 2 2.24 0 1.23-.88 2.23-2 2.23Zm7.66 0c-1.1 0-2-1-2-2.23s.88-2.24 2-2.24c1.13 0 2.03 1.01 2 2.24 0 1.23-.87 2.23-2 2.23Z"/>
           </svg>
-          Meghívás
+          <span id="navInviteText">Meghívás</span>
         </a>
       </nav>
+
+      <div class="header-actions">
+        <div class="language-switch" id="languageSwitch" aria-label="Nyelvválasztás">
+          <button class="language-button" type="button" data-language="hu">HU</button>
+          <button class="language-button" type="button" data-language="en">EN</button>
+        </div>
+
+        <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mainNav">
+          <span class="sr-only" id="menuToggleLabel">Menü megnyitása</span>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -1016,7 +1066,7 @@
     <section class="hero" id="home">
       <div class="container">
         <div class="hero-content reveal">
-          <span class="hero-label">Klánháború közösségek számára</span>
+          <span class="hero-label" id="heroLabel">Klánháború közösségek számára</span>
 
           <h1>
             <span class="steel">Bulldozer</span>
@@ -1030,23 +1080,23 @@
             </svg>
           </div>
 
-          <p class="hero-copy">
+          <p class="hero-copy" id="heroCopy">
             Egy komplex Discord bot Klánháború játékosok és klánok számára.
             Automatizálás, statisztikák, foglalások követése és még sok más.
           </p>
 
           <div class="hero-actions">
-                <a class="btn btn-primary invite-link" href="#" target="_blank" rel="noopener">
+                <a class="btn btn-primary invite-link" href="#" target="_blank" rel="noopener" id="heroInvite">
               <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M19.5 5.34A16.5 16.5 0 0 0 15.44 4l-.5 1.02a15.4 15.4 0 0 0-5.88 0L8.56 4A16.8 16.8 0 0 0 4.5 5.34C1.93 9.17 1.23 12.9 1.58 16.58A16.3 16.3 0 0 0 6.55 19l1.2-1.64c-.66-.25-1.3-.57-1.9-.95.16-.12.31-.24.46-.36 3.67 1.7 7.66 1.7 11.28 0 .15.12.3.24.46.36-.6.38-1.24.7-1.9.95L17.45 19a16.3 16.3 0 0 0 4.97-2.42c.42-4.26-.72-7.96-2.92-11.24ZM8.17 14.4c-1.1 0-2-1-2-2.23s.88-2.24 2-2.24c1.13 0 2.03 1.01 2 2.24 0 1.23-.88 2.23-2 2.23Zm7.66 0c-1.1 0-2-1-2-2.23s.88-2.24 2-2.24c1.13 0 2.03 1.01 2 2.24 0 1.23-.87 2.23-2 2.23Z"/>
               </svg>
-              Meghívás a szerveredre
+              <span id="heroInviteText">Meghívás a szerveredre</span>
             </a>
           </div>
         </div>
       </div>
 
-      <a class="scroll-hint" href="#features" aria-label="Görgess a funkciókhoz">
+      <a class="scroll-hint" href="#features" id="scrollHint" aria-label="Görgess a funkciókhoz">
         <span class="mouse"></span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1057,8 +1107,8 @@
     <section class="section features" id="features">
       <div class="container">
         <div style="text-align:center" class="reveal">
-          <span class="section-kicker">Funkciók</span>
-          <h2 class="section-title">Minden, amire egy <span>klánnak</span> szüksége van</h2>
+          <span class="section-kicker" id="featuresKicker">Funkciók</span>
+          <h2 class="section-title" id="featuresTitle">Minden, amire egy <span>klánnak</span> szüksége van</h2>
         </div>
 
         <div class="feature-grid">
@@ -1066,16 +1116,16 @@
             <svg class="feature-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
               <path d="M12 50h40M20 50V30l12-8 12 8v20M31 22V10l17 7-17 7" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <h3>Foglalások követése</h3>
-            <p>Valós idejű foglalási értesítések, új és elvesztett falvak nyomon követése.</p>
+            <h3 id="feature1Title">Foglalások követése</h3>
+            <p id="feature1Text">Valós idejű foglalási értesítések, új és elvesztett falvak nyomon követése.</p>
           </article>
 
           <article class="feature-card reveal">
             <svg class="feature-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
               <path d="M10 54h44M16 48V34h8v14M28 48V22h8v26M40 48V12h8v36" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
             </svg>
-            <h3>Statisztikák és ranglisták</h3>
-            <p>Részletes napi eredmények, teljesítmények és ranglisták a klánod számára.</p>
+            <h3 id="feature2Title">Statisztikák és ranglisták</h3>
+            <p id="feature2Text">Részletes napi eredmények, teljesítmények és ranglisták a klánod számára.</p>
           </article>
 
           <article class="feature-card reveal">
@@ -1083,8 +1133,8 @@
               <path d="M10 14h44v36H10V14Zm0 10 11-6 12 8 10-7 11 5M20 41l8-8 7 5 9-10" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
               <circle cx="43" cy="28" r="3" fill="currentColor"/>
             </svg>
-            <h3>Térkép készítés</h3>
-            <p>Saját térképek létrehozása játékosok, klánok és falvak áttekinthető megjelenítésével.</p>
+            <h3 id="feature3Title">Térkép készítés</h3>
+            <p id="feature3Text">Saját térképek létrehozása játékosok, klánok és falvak áttekinthető megjelenítésével.</p>
           </article>
 
           <article class="feature-card reveal">
@@ -1092,8 +1142,8 @@
               <path d="M32 10v8M32 46v8M10 32h8M46 32h8M16.4 16.4l5.7 5.7M41.9 41.9l5.7 5.7M47.6 16.4l-5.7 5.7M22.1 41.9l-5.7 5.7" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
               <circle cx="32" cy="32" r="12" stroke="currentColor" stroke-width="4"/>
             </svg>
-            <h3>Teljesen testreszabható</h3>
-            <p>Rugalmas beállítások, hogy a bot tökéletesen illeszkedjen a klánod igényeihez.</p>
+            <h3 id="feature4Title">Teljesen testreszabható</h3>
+            <p id="feature4Text">Rugalmas beállítások, hogy a bot tökéletesen illeszkedjen a klánod igényeihez.</p>
           </article>
         </div>
 
@@ -1106,8 +1156,8 @@
                 <path d="M5 32c1-7 5-10 9-10s8 3 9 10M18 32c1-7 5-10 9-10s8 3 9 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
               </svg>
               <strong data-counter="12">0</strong>
-              <span>Aktív szerver</span>
-              <p>Folyamatosan bővülő közösség.</p>
+              <span id="stat1Label">Aktív szerver</span>
+              <p id="stat1Desc">Folyamatosan bővülő közösség.</p>
             </div>
           </div>
 
@@ -1117,8 +1167,8 @@
                 <path d="m7 7 26 26M33 7 7 33" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
               </svg>
               <strong data-counter="50000" data-suffix="+">0</strong>
-              <span>Foglalás követve</span>
-              <p>Több tízezer esemény rögzítve.</p>
+              <span id="stat2Label">Foglalás követve</span>
+              <p id="stat2Desc">Több tízezer esemény rögzítve.</p>
             </div>
           </div>
 
@@ -1128,8 +1178,8 @@
                 <path d="M20 3 34 8v10c0 10-5 16-14 19C11 34 6 28 6 18V8l14-5Z" stroke="currentColor" stroke-width="3"/>
               </svg>
               <strong>24/7</strong>
-              <span>Megbízható</span>
-              <p>Folyamatosan futó, felügyelt rendszer.</p>
+              <span id="stat3Label">Megbízható</span>
+              <p id="stat3Desc">Folyamatosan futó, felügyelt rendszer.</p>
             </div>
           </div>
 
@@ -1138,9 +1188,9 @@
               <svg class="stat-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
                 <path d="m23 3-11 20h9l-4 14 12-21h-9l3-13Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
               </svg>
-              <strong>Gyors</strong>
-              <span>Optimalizált</span>
-              <p>Hatékony működés alacsony késleltetéssel.</p>
+              <strong id="stat4Strong">Gyors</strong>
+              <span id="stat4Label">Optimalizált</span>
+              <p id="stat4Desc">Hatékony működés alacsony késleltetéssel.</p>
             </div>
           </div>
         </div>
@@ -1150,43 +1200,43 @@
     <section class="section docs" id="docs">
       <div class="container">
         <div class="reveal" style="text-align:center">
-          <span class="section-kicker">Dokumentáció</span>
-          <h2 class="section-title">Egyszerű parancsok, <span>komoly eredmények</span></h2>
-          <p class="section-copy">
+          <span class="section-kicker" id="docsKicker">Dokumentáció</span>
+          <h2 class="section-title" id="docsTitle">Egyszerű parancsok, <span>komoly eredmények</span></h2>
+          <p class="section-copy" id="docsCopy">
             A bot parancsai úgy készültek, hogy gyorsan és egyértelműen használhatók legyenek.
           </p>
         </div>
 
         <div class="docs-grid">
           <div class="docs-panel reveal">
-            <h3>Gyors indulás</h3>
-            <p>
+            <h3 id="docsStartTitle">Gyors indulás</h3>
+            <p id="docsStartText">
               Hívd meg a botot, add meg a szükséges jogosultságokat, majd állítsd be a szerverhez tartozó világot és csatornákat.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="guide.html">Útmutató</a>
-              <a class="btn btn-outline" href="terms.html">Felhasználási feltételek</a>
+              <a class="btn btn-primary" href="guide.html" id="docsGuideBtn">Útmutató</a>
+              <a class="btn btn-outline" href="terms.html" id="docsTermsBtn">Felhasználási feltételek</a>
             </div>
           </div>
 
           <div class="docs-panel reveal">
-            <h3>Néhány fontos parancs</h3>
+            <h3 id="docsCommandsTitle">Néhány fontos parancs</h3>
             <div class="command-list">
               <div class="command">
                 <code>/vilag</code>
-                <span>Világ hozzáadása és a kapcsolódó beállítások kezelése</span>
+                <span id="cmd1Desc">Világ hozzáadása és a kapcsolódó beállítások kezelése</span>
               </div>
               <div class="command">
                 <code>/foglalas</code>
-                <span>Foglalási események kezelése és tesztelése</span>
+                <span id="cmd2Desc">Foglalási események kezelése és tesztelése</span>
               </div>
               <div class="command">
                 <code>/terkep</code>
-                <span>Klán- és játékostérkép létrehozása</span>
+                <span id="cmd3Desc">Klán- és játékostérkép létrehozása</span>
               </div>
               <div class="command">
                 <code>/stat</code>
-                <span>Napi eredmények és ranglista megjelenítése</span>
+                <span id="cmd4Desc">Napi eredmények és ranglista megjelenítése</span>
               </div>
             </div>
           </div>
@@ -1198,13 +1248,13 @@
       <div class="container">
         <div class="cta-banner reveal">
           <div class="cta-content">
-            <h2>Készen állsz, hogy a klánod a következő szintre lépjen?</h2>
-            <p>Hívd meg a Bulldozert még ma!</p>
-            <a class="btn btn-primary invite-link" href="#" target="_blank" rel="noopener">
+            <h2 id="ctaTitle">Készen állsz, hogy a klánod a következő szintre lépjen?</h2>
+            <p id="ctaText">Hívd meg a Bulldozert még ma!</p>
+            <a class="btn btn-primary invite-link" href="#" target="_blank" rel="noopener" id="ctaButton">
               <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M19.5 5.34A16.5 16.5 0 0 0 15.44 4l-.5 1.02a15.4 15.4 0 0 0-5.88 0L8.56 4A16.8 16.8 0 0 0 4.5 5.34C1.93 9.17 1.23 12.9 1.58 16.58A16.3 16.3 0 0 0 6.55 19l1.2-1.64c-.66-.25-1.3-.57-1.9-.95.16-.12.31-.24.46-.36 3.67 1.7 7.66 1.7 11.28 0 .15.12.3.24.46.36-.6.38-1.24.7-1.9.95L17.45 19a16.3 16.3 0 0 0 4.97-2.42c.42-4.26-.72-7.96-2.92-11.24ZM8.17 14.4c-1.1 0-2-1-2-2.23s.88-2.24 2-2.24c1.13 0 2.03 1.01 2 2.24 0 1.23-.88 2.23-2 2.23Zm7.66 0c-1.1 0-2-1-2-2.23s.88-2.24 2-2.24c1.13 0 2.03 1.01 2 2.24 0 1.23-.87 2.23-2 2.23Z"/>
               </svg>
-              Meghívás most
+              <span id="ctaButtonText">Meghívás most</span>
             </a>
           </div>
         </div>
@@ -1230,23 +1280,23 @@
             </span>
           </a>
 
-          <p>A legjobb társad a Klánháború világában. Építs, harcolj, győzz!</p>
+          <p id="footerTagline">A legjobb társad a Klánháború világában. Építs, harcolj, győzz!</p>
         </div>
 
         <div class="footer-col">
-          <h4>Dokumentáció</h4>
-          <a href="guide.html">Útmutató</a>
+          <h4 id="footerDocsTitle">Dokumentáció</h4>
+          <a href="guide.html" id="footerGuide">Útmutató</a>
         </div>
 
         <div class="footer-col">
-          <h4>Jogi</h4>
-          <a href="privacy.html">Adatvédelmi irányelvek</a>
-          <a href="terms.html">Szolgáltatási feltételek</a>
+          <h4 id="footerLegalTitle">Jogi</h4>
+          <a href="privacy.html" id="footerPrivacy">Adatvédelmi irányelvek</a>
+          <a href="terms.html" id="footerTerms">Szolgáltatási feltételek</a>
         </div>
       </div>
 
       <div class="footer-bottom">
-        © <span id="year"></span> Bulldozer Discord Bot. Minden jog fenntartva.
+        © <span id="year"></span> Bulldozer Discord Bot. <span id="footerRights">Minden jog fenntartva.</span>
       </div>
     </div>
   </footer>
@@ -1259,6 +1309,229 @@
       link.href = INVITE_URL;
     });
 
+    const translations = {
+      hu: {
+        htmlLang: "hu",
+        documentTitle: "Bulldozer Discord Bot",
+        metaDescription:
+          "Bulldozer Discord Bot – modern Klánháború segédbot foglaláskövetéssel, statisztikákkal, ranglistákkal és automatizált értesítésekkel.",
+        brandAria: "Bulldozer Discord Bot kezdőlap",
+        mainNavAria: "Fő navigáció",
+        languageSwitchAria: "Nyelvválasztás",
+        menuToggleLabel: "Menü megnyitása",
+        navHome: "Főoldal",
+        navFeatures: "Funkciók",
+        navDocs: "Dokumentáció",
+        navInvite: "Meghívás",
+        heroLabel: "Klánháború közösségek számára",
+        heroCopy:
+          "Egy komplex Discord bot Klánháború játékosok és klánok számára. Automatizálás, statisztikák, foglalások követése és még sok más.",
+        heroInvite: "Meghívás a szerveredre",
+        scrollHint: "Görgess a funkciókhoz",
+        featuresKicker: "Funkciók",
+        featuresTitle: 'Minden, amire egy <span>klánnak</span> szüksége van',
+        feature1Title: "Foglalások követése",
+        feature1Text: "Valós idejű foglalási értesítések, új és elvesztett falvak nyomon követése.",
+        feature2Title: "Statisztikák és ranglisták",
+        feature2Text: "Részletes napi eredmények, teljesítmények és ranglisták a klánod számára.",
+        feature3Title: "Térkép készítés",
+        feature3Text: "Saját térképek létrehozása játékosok, klánok és falvak áttekinthető megjelenítésével.",
+        feature4Title: "Teljesen testreszabható",
+        feature4Text: "Rugalmas beállítások, hogy a bot tökéletesen illeszkedjen a klánod igényeihez.",
+        stat1Label: "Aktív szerver",
+        stat1Desc: "Folyamatosan bővülő közösség.",
+        stat2Label: "Foglalás követve",
+        stat2Desc: "Több tízezer esemény rögzítve.",
+        stat3Label: "Megbízható",
+        stat3Desc: "Folyamatosan futó, felügyelt rendszer.",
+        stat4Strong: "Gyors",
+        stat4Label: "Optimalizált",
+        stat4Desc: "Hatékony működés alacsony késleltetéssel.",
+        docsKicker: "Dokumentáció",
+        docsTitle: "Egyszerű parancsok, <span>komoly eredmények</span>",
+        docsCopy: "A bot parancsai úgy készültek, hogy gyorsan és egyértelműen használhatók legyenek.",
+        docsStartTitle: "Gyors indulás",
+        docsStartText:
+          "Hívd meg a botot, add meg a szükséges jogosultságokat, majd állítsd be a szerverhez tartozó világot és csatornákat.",
+        docsGuideBtn: "Útmutató",
+        docsTermsBtn: "Felhasználási feltételek",
+        docsCommandsTitle: "Néhány fontos parancs",
+        cmd1Desc: "Világ hozzáadása és a kapcsolódó beállítások kezelése",
+        cmd2Desc: "Foglalási események kezelése és tesztelése",
+        cmd3Desc: "Klán- és játékostérkép létrehozása",
+        cmd4Desc: "Napi eredmények és ranglista megjelenítése",
+        ctaTitle: "Készen állsz, hogy a klánod a következő szintre lépjen?",
+        ctaText: "Hívd meg a Bulldozert még ma!",
+        ctaButton: "Meghívás most",
+        footerTagline: "A legjobb társad a Klánháború világában. Építs, harcolj, győzz!",
+        footerDocsTitle: "Dokumentáció",
+        footerGuide: "Útmutató",
+        footerLegalTitle: "Jogi",
+        footerPrivacy: "Adatvédelmi irányelvek",
+        footerTerms: "Szolgáltatási feltételek",
+        footerRights: "Minden jog fenntartva.",
+        numberLocale: "hu-HU"
+      },
+      en: {
+        htmlLang: "en",
+        documentTitle: "Bulldozer Discord Bot",
+        metaDescription:
+          "Bulldozer Discord Bot – a modern Tribal Wars assistant with conquest tracking, statistics, rankings and automated notifications.",
+        brandAria: "Bulldozer Discord Bot home page",
+        mainNavAria: "Main navigation",
+        languageSwitchAria: "Language selection",
+        menuToggleLabel: "Open menu",
+        navHome: "Home",
+        navFeatures: "Features",
+        navDocs: "Documentation",
+        navInvite: "Invite",
+        heroLabel: "Built for Tribal Wars communities",
+        heroCopy:
+          "A powerful Discord bot for Tribal Wars players and clans. Automation, statistics, conquest tracking and much more.",
+        heroInvite: "Invite to your server",
+        scrollHint: "Scroll to features",
+        featuresKicker: "Features",
+        featuresTitle: 'Everything a <span>clan</span> needs',
+        feature1Title: "Conquest tracking",
+        feature1Text: "Real-time conquest alerts and tracking for gains and losses.",
+        feature2Title: "Statistics and rankings",
+        feature2Text: "Detailed daily results, performance metrics and rankings for your clan.",
+        feature3Title: "Map generation",
+        feature3Text: "Create custom maps with a clear overview of players, tribes and villages.",
+        feature4Title: "Fully customizable",
+        feature4Text: "Flexible settings so the bot fits your clan perfectly.",
+        stat1Label: "Active servers",
+        stat1Desc: "A steadily growing community.",
+        stat2Label: "Conquests tracked",
+        stat2Desc: "Tens of thousands of events recorded.",
+        stat3Label: "Reliable",
+        stat3Desc: "A continuously running, monitored system.",
+        stat4Strong: "Fast",
+        stat4Label: "Optimized",
+        stat4Desc: "Efficient operation with low latency.",
+        docsKicker: "Documentation",
+        docsTitle: "Simple commands, <span>serious results</span>",
+        docsCopy: "The bot commands are designed to be quick and easy to use.",
+        docsStartTitle: "Quick start",
+        docsStartText:
+          "Invite the bot, grant the required permissions, then configure the world and channels for your server.",
+        docsGuideBtn: "Guide",
+        docsTermsBtn: "Terms of Service",
+        docsCommandsTitle: "A few important commands",
+        cmd1Desc: "Add a world and manage related settings",
+        cmd2Desc: "Manage and test conquest notifications",
+        cmd3Desc: "Generate tribe and player maps",
+        cmd4Desc: "Display daily results and rankings",
+        ctaTitle: "Ready to take your clan to the next level?",
+        ctaText: "Invite Bulldozer today!",
+        ctaButton: "Invite now",
+        footerTagline: "Your best companion in the world of Tribal Wars. Build, fight, win!",
+        footerDocsTitle: "Documentation",
+        footerGuide: "Guide",
+        footerLegalTitle: "Legal",
+        footerPrivacy: "Privacy Policy",
+        footerTerms: "Terms of Service",
+        footerRights: "All rights reserved.",
+        numberLocale: "en-US"
+      }
+    };
+
+    let activeNumberLocale = "hu-HU";
+
+    function detectLanguage() {
+      const saved = localStorage.getItem("bulldozer-language");
+      if (saved === "hu" || saved === "en") return saved;
+
+      const languages = navigator.languages?.length
+        ? navigator.languages
+        : [navigator.language || "en"];
+
+      return languages.some((language) =>
+        String(language).toLowerCase().startsWith("hu")
+      )
+        ? "hu"
+        : "en";
+    }
+
+    function applyLanguage(language, savePreference = false) {
+      const selected = translations[language] ? language : "en";
+      const text = translations[selected];
+
+      document.documentElement.lang = text.htmlLang;
+      document.title = text.documentTitle;
+      document.querySelector('meta[name="description"]').content = text.metaDescription;
+      document.getElementById("brandLink").setAttribute("aria-label", text.brandAria);
+      document.getElementById("mainNav").setAttribute("aria-label", text.mainNavAria);
+      document.getElementById("languageSwitch").setAttribute("aria-label", text.languageSwitchAria);
+      document.getElementById("menuToggleLabel").textContent = text.menuToggleLabel;
+      document.getElementById("navHome").textContent = text.navHome;
+      document.getElementById("navFeatures").textContent = text.navFeatures;
+      document.getElementById("navDocs").textContent = text.navDocs;
+      document.getElementById("navInviteText").textContent = text.navInvite;
+      document.getElementById("heroLabel").textContent = text.heroLabel;
+      document.getElementById("heroCopy").textContent = text.heroCopy;
+      document.getElementById("heroInviteText").textContent = text.heroInvite;
+      document.getElementById("scrollHint").setAttribute("aria-label", text.scrollHint);
+      document.getElementById("featuresKicker").textContent = text.featuresKicker;
+      document.getElementById("featuresTitle").innerHTML = text.featuresTitle;
+      document.getElementById("feature1Title").textContent = text.feature1Title;
+      document.getElementById("feature1Text").textContent = text.feature1Text;
+      document.getElementById("feature2Title").textContent = text.feature2Title;
+      document.getElementById("feature2Text").textContent = text.feature2Text;
+      document.getElementById("feature3Title").textContent = text.feature3Title;
+      document.getElementById("feature3Text").textContent = text.feature3Text;
+      document.getElementById("feature4Title").textContent = text.feature4Title;
+      document.getElementById("feature4Text").textContent = text.feature4Text;
+      document.getElementById("stat1Label").textContent = text.stat1Label;
+      document.getElementById("stat1Desc").textContent = text.stat1Desc;
+      document.getElementById("stat2Label").textContent = text.stat2Label;
+      document.getElementById("stat2Desc").textContent = text.stat2Desc;
+      document.getElementById("stat3Label").textContent = text.stat3Label;
+      document.getElementById("stat3Desc").textContent = text.stat3Desc;
+      document.getElementById("stat4Strong").textContent = text.stat4Strong;
+      document.getElementById("stat4Label").textContent = text.stat4Label;
+      document.getElementById("stat4Desc").textContent = text.stat4Desc;
+      document.getElementById("docsKicker").textContent = text.docsKicker;
+      document.getElementById("docsTitle").innerHTML = text.docsTitle;
+      document.getElementById("docsCopy").textContent = text.docsCopy;
+      document.getElementById("docsStartTitle").textContent = text.docsStartTitle;
+      document.getElementById("docsStartText").textContent = text.docsStartText;
+      document.getElementById("docsGuideBtn").textContent = text.docsGuideBtn;
+      document.getElementById("docsTermsBtn").textContent = text.docsTermsBtn;
+      document.getElementById("docsCommandsTitle").textContent = text.docsCommandsTitle;
+      document.getElementById("cmd1Desc").textContent = text.cmd1Desc;
+      document.getElementById("cmd2Desc").textContent = text.cmd2Desc;
+      document.getElementById("cmd3Desc").textContent = text.cmd3Desc;
+      document.getElementById("cmd4Desc").textContent = text.cmd4Desc;
+      document.getElementById("ctaTitle").textContent = text.ctaTitle;
+      document.getElementById("ctaText").textContent = text.ctaText;
+      document.getElementById("ctaButtonText").textContent = text.ctaButton;
+      document.getElementById("footerTagline").textContent = text.footerTagline;
+      document.getElementById("footerDocsTitle").textContent = text.footerDocsTitle;
+      document.getElementById("footerGuide").textContent = text.footerGuide;
+      document.getElementById("footerLegalTitle").textContent = text.footerLegalTitle;
+      document.getElementById("footerPrivacy").textContent = text.footerPrivacy;
+      document.getElementById("footerTerms").textContent = text.footerTerms;
+      document.getElementById("footerRights").textContent = text.footerRights;
+
+      activeNumberLocale = text.numberLocale;
+
+      document.querySelectorAll(".language-button").forEach((button) => {
+        const active = button.dataset.language === selected;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+
+      if (savePreference) {
+        localStorage.setItem("bulldozer-language", selected);
+      }
+    }
+
+    document.querySelectorAll(".language-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        applyLanguage(button.dataset.language, true);
+      });
+    });
 
     const header = document.getElementById("siteHeader");
     const menuToggle = document.getElementById("menuToggle");
@@ -1326,7 +1599,7 @@
             const progress = Math.min((currentTime - startTime) / duration, 1);
             const eased = 1 - Math.pow(1 - progress, 3);
             const value = Math.floor(target * eased);
-            element.textContent = value.toLocaleString("hu-HU") + suffix;
+            element.textContent = value.toLocaleString(activeNumberLocale) + suffix;
 
             if (progress < 1) {
               requestAnimationFrame(updateCounter);
@@ -1345,6 +1618,7 @@
     });
 
     document.getElementById("year").textContent = new Date().getFullYear();
+    applyLanguage(detectLanguage());
   </script>
 </body>
 </html>
